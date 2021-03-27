@@ -2,12 +2,12 @@ import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 import 'package:cve_app/widgets/card_emp.dart';
 import 'package:flutter/material.dart';
 
-class EmpreendimentosList extends StatefulWidget {
+class ListarEmpreendimentos extends StatefulWidget {
   @override
-  _EmpreendimentosListState createState() => _EmpreendimentosListState();
+  _ListarEmpreendimentosState createState() => _ListarEmpreendimentosState();
 }
 
-class _EmpreendimentosListState extends State<EmpreendimentosList> {
+class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
   //array com valores de teste
   List<Empreendimento> empreendimentos = [
     Empreendimento(
@@ -68,6 +68,10 @@ class _EmpreendimentosListState extends State<EmpreendimentosList> {
         valorComercialTerreno: 100040.20),
   ];
 
+  removerEmpreendimento(Empreendimento emp){
+    empreendimentos.remove(emp);
+  }
+
   Widget obtemAppBar() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -123,9 +127,8 @@ class _EmpreendimentosListState extends State<EmpreendimentosList> {
                 empreendimento: empreendimento,
                 delete: () {
                   setState(() {
-                    //comando para remover frase do vetor
-                    //frases.remove(frase);
-                    //removerFrase(frase);
+                    //empreendimentos.remove(empreendimento);
+                    removerEmpreendimento(empreendimento);
                   });
                 }))
             .toList(),
