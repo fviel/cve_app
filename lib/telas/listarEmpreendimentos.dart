@@ -68,8 +68,22 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
         valorComercialTerreno: 100040.20),
   ];
 
+  ///remove um empreendimento do array
   removerEmpreendimento(Empreendimento emp){
     empreendimentos.remove(emp);
+  }
+
+  ///adiciona um empreendimento com a finalidade de testes
+  adicionarEmpreendimentoTeste(){
+    empreendimentos.add(Empreendimento(
+        nome: 'Emp adicionado para teste',
+        descricao: 'Teste de tela do Fernando',
+        endereco: 'Rua dos Testes, 123, Testelandia, BR',
+        cubReferencia: null,
+        areaTerreno: 20.50,
+        taxaOcupacao: 15.5,
+        coeficienteAproveitamento: 10.3,
+        valorComercialTerreno: 100040.20));
   }
 
   Widget obtemAppBar() {
@@ -138,9 +152,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
         child: IconButton(
           onPressed: () {
             setState(() {
-              //comando para remover frase do vetor
-              //frases.remove(frase);
-              //adicionarFraseAleatoria();
+              adicionarEmpreendimentoTeste();
             });
           },
           icon: Icon(Icons.add),
