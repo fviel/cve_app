@@ -88,12 +88,12 @@ class CardEmpreendimento extends StatelessWidget {
                     'Delete',
                     style: TextStyle(
                       fontSize: 12.0,
-                      color: Colors.grey[700],
+                      color: Colors.grey[800],
                     ),
                   ),
                   icon: Icon(
                     Icons.delete,
-                    color: Colors.grey[700],
+                    color: Colors.grey[800],
                     size: 20.0,
                   ),
                 ),
