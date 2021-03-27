@@ -20,7 +20,45 @@ class _EmpreendimentosListState extends State<EmpreendimentosList> {
         coeficienteAproveitamento: 10.3,
         valorComercialTerreno: 100040.20),
     Empreendimento(
-        nome: 'Teste Dois Fernando',
+        nome: 'Teste Dois Fernando oijril j,iovjio jv,iore ',
+        descricao: 'Teste de tela do Fernando',
+        endereco: 'Rua dos Testes, 123, Testelandia, BR',
+        cubReferencia: null,
+        areaTerreno: 20.50,
+        taxaOcupacao: 15.5,
+        coeficienteAproveitamento: 10.3,
+        valorComercialTerreno: 100040.20),
+
+    Empreendimento(
+        nome: 'Teste Três Fernando',
+        descricao: 'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
+        endereco: 'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
+        cubReferencia: null,
+        areaTerreno: 20.50,
+        taxaOcupacao: 15.5,
+        coeficienteAproveitamento: 10.3,
+        valorComercialTerreno: 100040.20),
+    Empreendimento(
+        nome: 'Teste Quatro Fernando oijril j,iovjio jv,iore ',
+        descricao: 'Teste de tela do Fernando',
+        endereco: 'Rua dos Testes, 123, Testelandia, BR',
+        cubReferencia: null,
+        areaTerreno: 20.50,
+        taxaOcupacao: 15.5,
+        coeficienteAproveitamento: 10.3,
+        valorComercialTerreno: 100040.20),
+
+    Empreendimento(
+        nome: 'Teste Cinco Fernando',
+        descricao: 'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
+        endereco: 'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
+        cubReferencia: null,
+        areaTerreno: 20.50,
+        taxaOcupacao: 15.5,
+        coeficienteAproveitamento: 10.3,
+        valorComercialTerreno: 100040.20),
+    Empreendimento(
+        nome: 'Teste Seis Fernando oijril j,iovjio jv,iore ',
         descricao: 'Teste de tela do Fernando',
         endereco: 'Rua dos Testes, 123, Testelandia, BR',
         cubReferencia: null,
@@ -41,7 +79,7 @@ class _EmpreendimentosListState extends State<EmpreendimentosList> {
         ),
         SizedBox(width: 2),
         Text(
-          'Valor de Empreendimentos',
+          'Empreendimentos',
           style: TextStyle(
             fontSize: 16.0,
             color: Colors.white,
@@ -58,12 +96,26 @@ class _EmpreendimentosListState extends State<EmpreendimentosList> {
       appBar: AppBar(
         title: obtemAppBar(),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.red,
+        actions: <Widget>[
+          FlatButton.icon(
+              icon: Icon(Icons.settings,
+                color: Colors.grey[800],
+                size: 20.0,),
+              label: Text('Config',
+                style: TextStyle(
+                  fontSize: 12.0,
+                  color: Colors.grey[800],
+                ),),
+              onPressed: () {
+                //widget.telaASerExibida();
+              }),
+        ],
       ),
-      body: Column(
+      body: ListView(
         //
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
+        // crossAxisAlignment: CrossAxisAlignment.start,
 
         //mapeia cada objeto do array em um card
         children: empreendimentos
@@ -78,19 +130,20 @@ class _EmpreendimentosListState extends State<EmpreendimentosList> {
                 }))
             .toList(),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: IconButton(
-      //     onPressed: () {
-      //       setState(() {
-      //         //comando para remover frase do vetor
-      //         //frases.remove(frase);
-      //         //adicionarFraseAleatoria();
-      //       });
-      //     },
-      //     icon: Icon(Icons.add),
-      //     color: Colors.amberAccent,
-      //   ),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        child: IconButton(
+          onPressed: () {
+            setState(() {
+              //comando para remover frase do vetor
+              //frases.remove(frase);
+              //adicionarFraseAleatoria();
+            });
+          },
+          icon: Icon(Icons.add),
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }

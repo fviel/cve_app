@@ -22,64 +22,83 @@ class CardEmpreendimento extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Icon(
-                  Icons.announcement,
-                  color: Colors.red[300],
-                  size: 14.0,
+            ListTile(
+              leading: Icon(
+                Icons.architecture,
+                color: Colors.redAccent,
+                size: 30.0,
+              ),
+              title: Text(
+                empreendimento.nome,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black,
                 ),
-                SizedBox(width: 2),
-                Text(
-                  empreendimento.nome,
+              ),
+              subtitle: Text(
+                empreendimento.descricao,
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                  fontSize: 14.0,
+                  color: Colors.grey[500],
+                ),
+              ),
+            ),
+            SizedBox(height: 6),
+            Row(children: <Widget>[
+              //usei o expanded para manter o texto de endereço dentro do tamanho da linha
+              Expanded(
+                child: Text(
+                  empreendimento.endereco,
+                  overflow: TextOverflow.fade,
+                  maxLines: 1,
+                  softWrap: false,
+                  textAlign: TextAlign.start,
                   style: TextStyle(
-                    fontSize: 12.0,
-                    color: Colors.grey[600],
+                    fontSize: 10.0,
+                    color: Colors.grey[800],
+                  ),
+                ),
+              ),
+            ]),
+            SizedBox(height: 2),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                FlatButton.icon(
+                  onPressed: delete,
+                  label: Text(
+                    'Exibir',
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  icon: Icon(
+                    Icons.remove_red_eye_sharp,
+                    color: Colors.grey[700],
+                    size: 20.0,
                   ),
                 ),
 
+                SizedBox(width: 2),
+                FlatButton.icon(
+                  onPressed: delete,
+                  label: Text(
+                    'Delete',
+                    style: TextStyle(
+                      fontSize: 12.0,
+                      color: Colors.grey[700],
+                    ),
+                  ),
+                  icon: Icon(
+                    Icons.delete,
+                    color: Colors.grey[700],
+                    size: 20.0,
+                  ),
+                ),
 
               ],
-            ),
-            SizedBox(height: 6),
-            Text(
-              empreendimento.descricao,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: 8.0,
-                color: Colors.grey[800],
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 8.0),
-
-            SizedBox(height: 6),
-            Text(
-              empreendimento.endereco,
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: 8.0,
-                color: Colors.grey[800],
-                letterSpacing: 2.0,
-              ),
-            ),
-
-            SizedBox(height: 6),
-            Text(
-              empreendimento.dtHrCriacao.toString(),
-              textAlign: TextAlign.start,
-              style: TextStyle(
-                fontSize: 8.0,
-                color: Colors.grey[800],
-                letterSpacing: 2.0,
-              ),
-            ),
-
-
-            FlatButton.icon(
-              onPressed: delete,
-              label: Text('Delete'),
-              icon: Icon(Icons.delete),
             ),
           ],
         ),
