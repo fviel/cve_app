@@ -17,10 +17,18 @@ class Empreendimento{
   double taxaOcupacao;
   //Ca
   double coeficienteAproveitamento;
-
+  //Vct
   double valorComercialTerreno;
 
-
-
-
+  Empreendimento({
+    this.nome,
+    this.descricao,
+    this.endereco,
+    this.cubReferencia,
+    this.areaTerreno,
+    this.taxaOcupacao,
+    this.coeficienteAproveitamento,
+    this.valorComercialTerreno}){
+    this.dtHrCriacao = DateTime.now();
+  }
 }

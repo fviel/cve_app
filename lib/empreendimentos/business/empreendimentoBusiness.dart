@@ -2,64 +2,109 @@
 
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 
+///Implementação das fórmulas de cálculo com base no artigo
+///do Sr. Fernando de Mar/21
 class EmpreendimentoBusiness{
-
-  double calcularNumeroPavimentos(Empreendimento emp){
-    return emp.coeficienteAproveitamento = emp.taxaOcupacao;
-  }
-
+  //1
   double calcularAreaMaximaContruida(Empreendimento emp){
     return emp.areaTerreno * emp.coeficienteAproveitamento;
   }
 
-  double calcularCalcadasMuros(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
-  }
-
-  double calcularFundacao(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.2;
-  }
-
-  double calcularPaisagismo(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
-  }
-
-  double calcularProjetos(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
-  }
-
-  double calcularRespTecnica(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.1;
-  }
-
-  double calcularTaxasAprovacoes(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
-  }
-
-  double calcularTaxasAdministracao(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.2;
-  }
-
-  double calcularTaxaVendaEMkt(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.13;
-  }
-
-  double calcularTaxaLucroConstrutora(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.15;
-  }
-
+  //2
   double calcularValorComercialTerreno(Empreendimento emp){
     return emp.valorComercialTerreno * emp.coeficienteAproveitamento;
   }
 
-  double calcularValorComercialDasConstrucoes(Empreendimento emp){
-    return 0.0;
-    //TODO - Vt = Vte + (Amc x Vcc)
+  //3
+  double calcularNumeroPavimentos(Empreendimento emp){
+    return emp.coeficienteAproveitamento = emp.taxaOcupacao;
   }
 
-  //TODO Cálculo do PREÇO INICIAL DO VALOR DO METRO QUADRADO DO EMPREENDIMENTO (INDEPENDE DO ANDAR DO EDIFÍCIO). Pi = Vt/Amc (=R$/m²)
+  //4
+  //Em função do número de pavimentos, obter a referência de cub correta.
+  //Esta informação será fornecida pelo usuário, juntamente com o padrão
 
+  //5
+  //Calcular todos os valores extra-CUB
+  //5.1.
+  double calcularCalcadasMuros(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.05;
+  }
+
+  //5.2
+  double calcularFundacao(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.2;
+  }
+
+  //5.3
+  double calcularPaisagismo(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.05;
+  }
+
+  //5.4
+  double calcularProjeto(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.05;
+  }
+
+  //5.5
+  double calcularRespTecnica(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.1;
+  }
+
+  //5.6
+  double calcularTaxasAprovacoes(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.05;
+  }
+
+  //5.7
+  double calcularTaxasAdministracao(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.2;
+  }
+
+  //5.8
+  double calcularTaxaVendaEMkt(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.13;
+  }
+
+  //5.9
+  double calcularLucroConstrutora(Empreendimento emp){
+    return emp.cubReferencia.valor * 0.15;
+  }
+
+  //5.10
+  //VCC é a soma de todos os valores extra-CUB
+  double calcularValorComercialDasConstrucoes(Empreendimento emp){
+    double calcadasMuros = calcularCalcadasMuros(emp);
+    double fundacao = calcularFundacao(emp);
+    double paisagismo = calcularPaisagismo(emp);
+    double projeto = calcularProjeto(emp);
+    double respTec = calcularRespTecnica(emp);
+    double taxasAprov = calcularTaxasAprovacoes(emp);
+    double taxasAdm = calcularTaxasAdministracao(emp);
+    double taxaVendaMkt = calcularTaxaVendaEMkt(emp);
+    double lucro = calcularLucroConstrutora(emp);
+
+    return (calcadasMuros
+    +fundacao
+    +paisagismo
+    +projeto
+    +respTec
+    +taxasAprov
+    +taxasAdm
+    +taxaVendaMkt
+    +lucro);
+  }
+
+  //6
   double calcularValorTotal(Empreendimento emp){
-    return (calcularValorComercialTerreno(emp) * calcularValorComercialDasConstrucoes(emp)) + (calcularAreaMaximaContruida(emp) * calcularValorComercialDasConstrucoes(emp));
+    //Vte = valor do terreno no empreendimento = Vct x CA
+    //Vt = Vte + (Amc x Vcc)
+    return (calcularValorComercialTerreno(emp) * emp.coeficienteAproveitamento) + (calcularAreaMaximaContruida(emp) * calcularValorComercialDasConstrucoes(emp));
+  }
+
+  //7
+  double calcularPrecoInicialM2(Empreendimento emp){
+    //Pi = Vt/Amc (=R$/m²)
+    return (emp.valorComercialTerreno / calcularAreaMaximaContruida(emp));
   }
 }
