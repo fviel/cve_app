@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 ///representa um cartão de empreendimento
 class CardEmpreendimento extends StatelessWidget {
+
   // frase precisa ser final, pois este objeto é stateless, e após criado, não pode ser alterado
   final Empreendimento empreendimento;
 
@@ -12,6 +13,9 @@ class CardEmpreendimento extends StatelessWidget {
   //ou seja, o código dela não está nem nessa classe
   CardEmpreendimento({this.empreendimento, this.delete});
 
+  void apagarEstaCoisa(){
+    delete;
+  }
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -90,6 +94,41 @@ class CardEmpreendimento extends StatelessWidget {
                 SizedBox(width: 2),
                 FlatButton.icon(
                   onPressed: delete,
+                  // onPressed: () {
+                  //   showDialog(
+                  //   context:  context,
+                  //   builder:  (BuildContext context) {
+                  //     return AlertDialog();
+                  //   },
+                  // );
+
+                    // showDialog(
+                    //   context: context,
+                    //   builder: (BuildContext context) {
+                    //     // retorna um objeto do tipo Dialog
+                    //     return AlertDialog(
+                    //       title: new Text('Confirmar a exclusão?'),
+                    //       actions: <Widget>[
+                    //         // define os botões na base do dialogo
+                    //         new FlatButton(
+                    //           child: new Text("Cancelar"),
+                    //           onPressed: () {
+                    //             Navigator.of(context).pop();
+                    //           },
+                    //         ),
+                    //         new FlatButton(
+                    //           child: new Text("Excluir"),
+                    //           onPressed: () {
+                    //             apagarEstaCoisa();
+                    //             Navigator.of(context).pop();
+                    //           },
+                    //         ),
+                    //       ],
+                    //     );
+                    //   },
+                    // // );
+                    //
+                    // },
                   label: Text(
                     'Delete',
                     style: TextStyle(

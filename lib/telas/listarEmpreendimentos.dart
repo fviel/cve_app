@@ -1,5 +1,6 @@
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
-import 'package:cve_app/widgets/card_emp.dart';
+import 'package:cve_app/widgets/cardEmpreendimento.dart';
+import 'package:cve_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 
 class ListarEmpreendimentos extends StatefulWidget {
@@ -104,34 +105,15 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
     });
   }
 
-  Widget obtemAppBar() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: <Widget>[
-        Icon(
-          Icons.apartment,
-          color: Colors.white,
-          size: 20.0,
-        ),
-        SizedBox(width: 2),
-        Text(
-          'Empreendimentos',
-          style: TextStyle(
-            fontSize: 16.0,
-            color: Colors.white,
-          ),
-        ),
-      ],
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
-        title: obtemAppBar(),
-        centerTitle: true,
+        title: TopBar(),
+        centerTitle: false,
         backgroundColor: Colors.red,
         actions: <Widget>[
           FlatButton.icon(
