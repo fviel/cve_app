@@ -1,20 +1,25 @@
+import 'package:cve_app/telas/exibirEmpreendimento.dart';
+import 'package:cve_app/telas/sobre.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/telas/listarEmpreendimentos.dart';
 
 void main() {
  runApp(MaterialApp(
-      home: ListarEmpreendimentos(),
-  ));
+       initialRoute: '/listarEmpreendimentos',
+       debugShowCheckedModeBanner: true,
+
+       routes:{
+         '/listarEmpreendimentos':(context) => ListarEmpreendimentos(),
+         '/exibirEmpreendimento':(context) => ExibirEmpreendimento(),
+         '/sobre': (context) => Sobre(),
+       }
+   ));
+
+
+   //    home: ListarEmpreendimentos(),
+   // //home: ExibirEmpreendimento(),
+
 }
 
-  //     initialRoute: '/',
-  //     debugShowCheckedModeBanner: true,
-  //     /*theme: ThemeData(
-  //       brightness: Brightness.dark,
-  //     ),*/
-  //     routes:{
-  //       '/':(context) => Loading(),
-  //       '/home':(context) => Home(),
-  //       '/location': (context) => ChooseLocation(),    }
-  // ));
+
 

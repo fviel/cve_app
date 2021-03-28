@@ -18,20 +18,21 @@ class CardEmpreendimento extends StatelessWidget {
       color: Colors.white,
       margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             ListTile(
               leading: Icon(
-                Icons.architecture,
+                // Icons.architecture,
+                Icons.business,
                 color: Colors.redAccent,
                 size: 30.0,
               ),
               title: Text(
                 empreendimento.nome,
                 style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 16.0,
                   color: Colors.black,
                 ),
               ),
@@ -66,7 +67,12 @@ class CardEmpreendimento extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 FlatButton.icon(
-                  onPressed: delete,
+                  onPressed: () async{
+                    dynamic result = await Navigator.pushNamed(context, '/exibirEmpreendimento', arguments: empreendimento);
+                    if(result != null) {
+                      //setState(() {});
+                    }
+                  },
                   label: Text(
                     'Exibir',
                     style: TextStyle(
