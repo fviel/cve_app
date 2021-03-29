@@ -1,4 +1,3 @@
-
 import 'package:cve_app/gestorcub/entities/cub.dart';
 
 ///Empreendimento é uma construção, um imóvel, logo tem dados de um imóvel
@@ -30,5 +29,10 @@ class Empreendimento{
     this.coeficienteAproveitamento,
     this.valorComercialTerreno}){
     this.dtHrCriacao = DateTime.now();
+  }
+
+  String obterValorEmpreendimentoFormatado(){
+    String valor = valorComercialTerreno.toString();
+    valor = valor.replaceAll('.', ',');
   }
 }

@@ -1,6 +1,24 @@
-
-
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
+
+
+//TODO Avaliar a conversão desta classe para um singleton:
+// class Singleton {
+//   static final Singleton _singleton = Singleton._internal();
+//
+//   factory Singleton() {
+//     return _singleton;
+//   }
+//
+//   Singleton._internal();
+// }
+// You can construct it like this
+//
+// main() {
+//   var s1 = Singleton();
+//   var s2 = Singleton();
+//   print(identical(s1, s2));  // true
+//   print(s1 == s2);           // true
+// }
 
 ///Implementação das fórmulas de cálculo com base no artigo
 ///do Sr. Fernando de Mar/21

@@ -1,6 +1,10 @@
+import 'package:cve_app/empreendimentos/business/empreendimentoBusiness.dart';
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/widgets/topBar.dart';
+import 'package:intl/intl.dart';
+
 
 class ExibirEmpreendimento extends StatefulWidget {
   @override
@@ -9,13 +13,19 @@ class ExibirEmpreendimento extends StatefulWidget {
 
 class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
 
-   Empreendimento empreendimento = new Empreendimento();
+
+  Empreendimento empreendimento = new Empreendimento();
+  EmpreendimentoBusiness empBusiness = new EmpreendimentoBusiness();
+  
   @override
   Widget build(BuildContext context) {
 
     //dados recebe os argumentos ao abrir esta tela
     //sempre rodo o build no ststate, então, se o array de dados estiver preenchido, usa ele, senão roteia pra tela
     empreendimento = empreendimento == null ? empreendimento : ModalRoute.of(context).settings.arguments ;
+
+    var f = NumberFormat('###,###.00#', 'pt_BR');
+    String valorFormatado = f.format(empreendimento.valorComercialTerreno);
 
     return Scaffold(
         backgroundColor: Colors.grey[300],
@@ -38,96 +48,299 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                 }),
           ],
         ),
-        body: Card(
-          color: Colors.white,
-          margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
-          child: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Column(
-              //crossAxisAlignment: CrossAxisAlignment.center,
+        body: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                ListTile(
-                  leading: Icon(
-                    Icons.architecture,
-                    color: Colors.redAccent,
-                    size: 30.0,
-                  ),
-                  title: Text(
-                    empreendimento.nome,
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.black,
-                    ),
-                  ),
-                  subtitle: Text(
-                    empreendimento.descricao,
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: Colors.grey[500],
-                    ),
-                  ),
-                ),
-                SizedBox(height: 6),
-                Row(children: <Widget>[
-                  //usei o expanded para manter o texto de endereço dentro do tamanho da linha
-                  Expanded(
-                    child: Text(
-                      empreendimento.endereco,
-                      overflow: TextOverflow.fade,
-                      maxLines: 1,
-                      softWrap: false,
-                      textAlign: TextAlign.start,
-                      style: TextStyle(
-                        fontSize: 10.0,
-                        color: Colors.grey[800],
-                      ),
-                    ),
-                  ),
-                ]),
-                SizedBox(height: 2),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    FlatButton.icon(
-                      onPressed: (){},
-                      label: Text(
-                        'Exibir',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey[700],
-                        ),
-                      ),
-                      icon: Icon(
-                        Icons.remove_red_eye_sharp,
-                        color: Colors.grey[700],
-                        size: 20.0,
-                      ),
-                    ),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(14.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Expanded(
+                                flex:2,
+                                child: Icon(
+                                  // Icons.architecture,
+                                  Icons.business,
+                                  color: Colors.redAccent,
+                                  size: 30.0,
+                                ),
+                              ),
+                              SizedBox(width:2),
+                              Expanded(
+                                flex:8,
+                                child: Text(
+                                  empreendimento.nome,
+                                  style: TextStyle(
+                                    fontSize: 16.0,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        SizedBox(height:8),
 
-                    SizedBox(width: 2),
-                    FlatButton.icon(
-                      onPressed: (){},
-                      label: Text(
-                        'Delete',
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          color: Colors.grey[800],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              empreendimento.descricao,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 100,
+                              softWrap: false,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      icon: Icon(
-                        Icons.delete,
-                        color: Colors.grey[800],
-                        size: 20.0,
-                      ),
-                    ),
+                        SizedBox(height:8),
 
-                  ],
-                ),
-              ],
-            ),
-          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              empreendimento.endereco,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 100,
+                              softWrap: false,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height:8),
+
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Criado em ${empreendimento.dtHrCriacao.day}/${empreendimento.dtHrCriacao.month}/${empreendimento.dtHrCriacao.year} ${empreendimento.dtHrCriacao.hour}:${empreendimento.dtHrCriacao.minute}',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 100,
+                              softWrap: false,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height:8),
+
+                        Divider(
+                          height: 12.0,
+                          thickness: 1,
+                          color: Colors.grey[500],
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'CUB aplicado:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          'CUB padrão de pobre RC1, no valor nominal de 10 reau',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Área do terreno:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          '${empreendimento.areaTerreno} m²',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Valor do terreno:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          'R\$ ${valorFormatado}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Coeficiente de aproveitamento do terreno:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          empreendimento.coeficienteAproveitamento.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Divider(
+                          height: 12.0,
+                          thickness: 1,
+                          color: Colors.grey[500],
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Área máxima construível:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          '${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Área máxima construível:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          '${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Valor comercial do terreno:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          '${empBusiness.calcularValorComercialTerreno(empreendimento).toString()}',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+
+
+
+
+                      ],
+                    ),
+                  ),
+                )
+              ]),
         )
-    );
+   );
   }
 }
