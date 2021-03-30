@@ -9,8 +9,13 @@ class Cub {
   /// 1 - Comercial - CAL/CSL
   /// 2 - Galpão industrial e Residência popular - GI e RP1Q
   int tipoProjeto;
+  String estado;
+  bool desonerado;
 
-  Cub({this.padrao, this.classificacao, this.valor, this.tipoProjeto});
-
-
+  Cub({this.padrao,
+    this.classificacao,
+    this.valor,
+    this.tipoProjeto,
+    this.estado,
+    this.desonerado});
 }

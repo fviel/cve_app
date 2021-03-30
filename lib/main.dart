@@ -1,3 +1,4 @@
+import 'package:cve_app/telas/adicionarEmpreendimento.dart';
 import 'package:cve_app/telas/exibirEmpreendimento.dart';
 import 'package:cve_app/telas/sobre.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ void main() {
          '/listarEmpreendimentos':(context) => ListarEmpreendimentos(),
          '/exibirEmpreendimento':(context) => ExibirEmpreendimento(),
          '/sobre': (context) => Sobre(),
+         '/adicionar': (context) =>AdicionarEmpreendimento(),
        }
    ));
 

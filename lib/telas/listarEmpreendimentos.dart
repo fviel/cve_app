@@ -104,6 +104,10 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       'empreendimento': emp,
     });
   }
+  
+  void exibirTelaNovoEmpreendimento(){
+    Navigator.pushReplacementNamed(context, '/adicionar');
+  }
 
 
 
@@ -185,7 +189,8 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
         child: IconButton(
           onPressed: () {
             setState(() {
-              adicionarEmpreendimentoTeste();
+              //adicionarEmpreendimentoTeste();
+              exibirTelaNovoEmpreendimento();
             });
           },
           icon: Icon(Icons.add),
