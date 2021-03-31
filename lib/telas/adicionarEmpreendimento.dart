@@ -1,10 +1,16 @@
 import 'package:cve_app/empreendimentos/business/empreendimentoBusiness.dart';
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
+import 'package:cve_app/gestorcub/entities/cub.dart';
+import 'package:cve_app/widgets/dropDownExemplo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/widgets/topBar.dart';
 import 'package:intl/intl.dart';
 
+//TODO Pesquisar como usar controller? qual a vantagem?
+///https://stackoverflow.com/questions/53667793/what-are-controllers-in-flutter#:~:text=In%20flutter%2C%20controllers%20are%20a,pattern%20stuff%20and%20increase%20performances.
+
+//TODO Pesquisar sobre o dispose() para evitar memory leak
 
 class AdicionarEmpreendimento extends StatefulWidget {
   @override
@@ -13,17 +19,76 @@ class AdicionarEmpreendimento extends StatefulWidget {
 
 class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   final _formKey = GlobalKey<FormState>();
-  Empreendimento novoEmp = new Empreendimento();
+
+
+  Empreendimento novoEmp = Empreendimento();
+
   EmpreendimentoBusiness empBusiness = new EmpreendimentoBusiness();
+
+  List<Cub> cubs = [
+    Cub(padrao:'Baixo',
+        classificacao: 'R-1',
+        valor: 1722.89,
+        tipoProjeto:0,
+        estado:'PR',
+        desonerado:false),
+
+    Cub(padrao:'Baixo',
+        classificacao: 'PP-4',
+        valor: 1604.95,
+        tipoProjeto:0,
+        estado:'PR',
+        desonerado:false),
+
+    Cub(padrao:'Baixo',
+        classificacao: 'R-8',
+        valor: 1529.39,
+        tipoProjeto:0,
+        estado:'PR',
+        desonerado:false),
+
+    Cub(padrao:'Baixo',
+        classificacao: 'PIS',
+        valor: 1224.99,
+        tipoProjeto:0,
+        estado:'PR',
+        desonerado:false)
+  ];
+
+  final List<String> classificacoes = <String>['R-1', 'PP-4', 'R-8', 'PIS' ];
+  String _classificacaoSelecionada = "";
+
+  Cub _cubSelecionado;
+
+  /// initialization is here:
+  @override
+  void initState() {
+    _classificacaoSelecionada = classificacoes[0];
+    _cubSelecionado = new Cub(padrao:'pobre',
+      classificacao:'ruim',
+      valor:0,
+      tipoProjeto:0,
+      estado:'PR',
+      desonerado:false);
+
+    novoEmp = Empreendimento(nome:'Novo Empreendimento',
+
+    descricao: 'Descrição',
+    endereco:'Endereço',
+    cubReferencia:new Cub(padrao:'Baixo',
+    classificacao: 'PIS',
+    valor: 1224.99,
+    tipoProjeto:0,
+    estado:'PR',
+    desonerado:false),
+    areaTerreno:0,
+    taxaOcupacao:0,
+    coeficienteAproveitamento:0,
+    valorComercialTerreno:0);
+  }
 
   @override
   Widget build(BuildContext context) {
-    //dados recebe os argumentos ao abrir esta tela
-    //sempre rodo o build no ststate, então, se o array de dados estiver preenchido, usa ele, senão roteia pra tela
-    //empreendimento = empreendimento == null ? empreendimento : ModalRoute.of(context).settings.arguments ;
-
-    //var f = NumberFormat('###,###.00#', 'pt_BR');
-    //String valorFormatado = f.format(novoEmp.valorComercialTerreno);
 
     return Scaffold(
         backgroundColor: Colors.grey[300],
@@ -128,6 +193,22 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                                 novoEmp.endereco = val;
                               });
                             },
+                          ),
+
+                          SizedBox(height: 6.0),
+                                                    //TODO separar o dropdown como um widget em outro arquivo, como fiz no dropDown exemplo
+                                                    //DropdownExample(),
+                          DropdownButtonFormField(
+                            //decoration: textInputDecorationFernando,
+                            value: _classificacaoSelecionada,
+                            onChanged: (val) => setState(() => _classificacaoSelecionada = val),
+                            items: classificacoes.map((cItem) => DropdownMenuItem(value: cItem.toString(), child:Text(cItem),)).toList(),
+                            // items: classificacoes.map((classi) {
+                            //   return DropdownMenuItem<String>(
+                            //     value: classi,
+                            //     child: Text(classi),
+                            //   );
+                            // }).toList(),
                           ),
 
 

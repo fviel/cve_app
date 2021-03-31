@@ -104,12 +104,11 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       'empreendimento': emp,
     });
   }
-  
-  void exibirTelaNovoEmpreendimento(){
-    Navigator.pushReplacementNamed(context, '/adicionar');
+
+  void exibirTelaNovoEmpreendimento() {
+    //Navigator.pushReplacementNamed(context, '/adicionar');
+    Navigator.pushNamed(context, '/adicionar');
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -187,11 +186,11 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
         child: IconButton(
-          onPressed: () {
-            setState(() {
-              //adicionarEmpreendimentoTeste();
-              exibirTelaNovoEmpreendimento();
-            });
+          onPressed: () async {
+            dynamic result = await Navigator.pushNamed(context, '/adicionar');
+            if (result != null) {
+              //setState(() {});
+            }
           },
           icon: Icon(Icons.add),
           color: Colors.white,

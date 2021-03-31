@@ -13,7 +13,7 @@ void main() {
          '/listarEmpreendimentos':(context) => ListarEmpreendimentos(),
          '/exibirEmpreendimento':(context) => ExibirEmpreendimento(),
          '/sobre': (context) => Sobre(),
-         '/adicionar': (context) =>AdicionarEmpreendimento(),
+         '/adicionar': (context) => AdicionarEmpreendimento(),
        }
    ));
 
