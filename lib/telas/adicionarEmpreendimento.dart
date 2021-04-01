@@ -1,11 +1,14 @@
 import 'package:cve_app/empreendimentos/business/empreendimentoBusiness.dart';
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 import 'package:cve_app/gestorcub/entities/cub.dart';
-import 'package:cve_app/widgets/dropDownExemplo.dart';
+//import 'package:cve_app/widgets/dropDownExemplo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/widgets/topBar.dart';
-import 'package:intl/intl.dart';
+//import 'package:intl/intl.dart';
+
+//TODO Trocar o ícone do app:
+//https://stackoverflow.com/questions/43928702/how-to-change-the-application-launcher-icon-on-flutter
 
 //TODO Pesquisar como usar controller? qual a vantagem?
 ///https://stackoverflow.com/questions/53667793/what-are-controllers-in-flutter#:~:text=In%20flutter%2C%20controllers%20are%20a,pattern%20stuff%20and%20increase%20performances.
@@ -58,18 +61,18 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   final List<String> classificacoes = <String>['R-1', 'PP-4', 'R-8', 'PIS' ];
   String _classificacaoSelecionada = "";
 
-  Cub _cubSelecionado;
+  //Cub _cubSelecionado;
 
   /// initialization is here:
   @override
   void initState() {
     _classificacaoSelecionada = classificacoes[0];
-    _cubSelecionado = new Cub(padrao:'pobre',
-      classificacao:'ruim',
-      valor:0,
-      tipoProjeto:0,
-      estado:'PR',
-      desonerado:false);
+    // _cubSelecionado = new Cub(padrao:'pobre',
+    //   classificacao:'ruim',
+    //   valor:0,
+    //   tipoProjeto:0,
+    //   estado:'PR',
+    //   desonerado:false);
 
     novoEmp = Empreendimento(nome:'Novo Empreendimento',
 
