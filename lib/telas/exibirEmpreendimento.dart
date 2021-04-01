@@ -24,10 +24,11 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
     //sempre rodo o build no ststate, então, se o array de dados estiver preenchido, usa ele, senão roteia pra tela
     empreendimento = empreendimento == null ? empreendimento : ModalRoute.of(context).settings.arguments ;
 
-    var f = NumberFormat('###,###.00#', 'pt_BR');
+    var f = NumberFormat('###,###,###.00', 'pt_BR');
     String valorFormatado = f.format(empreendimento.valorComercialTerreno);
     String valorCubFormatado = f.format(empreendimento.valorCub);
     String valorComercialTerrenoFormatado = f.format(empBusiness.calcularValorComercialTerreno(empreendimento));
+    String valorComercialEmpreendimentoFormatado = f.format(empBusiness.calcularValorComercialDasConstrucoes(empreendimento));
 
     return Scaffold(
         backgroundColor: Colors.grey[300],
@@ -312,6 +313,56 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                         SizedBox(height:4),
                         Text(
                           'R\$ $valorComercialTerrenoFormatado',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Pavimentos:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          '${empBusiness.calcularNumeroPavimentos(empreendimento).toString()} pavimentos',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
+                        ),
+                        SizedBox(height:8),
+
+                        Text(
+                          'Valor Comercial do Empreendimento:',
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[800],
+                          ),
+                        ),
+                        SizedBox(height:4),
+                        Text(
+                          'R\$ $valorComercialEmpreendimentoFormatado',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 100,
                           softWrap: false,
