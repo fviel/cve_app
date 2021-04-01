@@ -15,7 +15,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
 
 
   Empreendimento empreendimento = new Empreendimento();
-  EmpreendimentoBusiness empBusiness = new EmpreendimentoBusiness();
+  EmpreendimentoBusinessSingleton empBusiness = EmpreendimentoBusinessSingleton();
   
   @override
   Widget build(BuildContext context) {
@@ -26,6 +26,8 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
 
     var f = NumberFormat('###,###.00#', 'pt_BR');
     String valorFormatado = f.format(empreendimento.valorComercialTerreno);
+    String valorCubFormatado = f.format(empreendimento.valorCub);
+    String valorComercialTerrenoFormatado = f.format(empBusiness.calcularValorComercialTerreno(empreendimento));
 
     return Scaffold(
         backgroundColor: Colors.grey[300],
@@ -88,39 +90,29 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                           ),
                         SizedBox(height:8),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              empreendimento.descricao,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 100,
-                              softWrap: false,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.grey[500],
-                              ),
-                            ),
-                          ],
+                        Text(
+                          empreendimento.descricao,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
                         ),
                         SizedBox(height:8),
 
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              empreendimento.endereco,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 100,
-                              softWrap: false,
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                fontSize: 14.0,
-                                color: Colors.grey[500],
-                              ),
-                            ),
-                          ],
+                        Text(
+                          empreendimento.endereco,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 100,
+                          softWrap: false,
+                          textAlign: TextAlign.start,
+                          style: TextStyle(
+                            fontSize: 14.0,
+                            color: Colors.grey[500],
+                          ),
                         ),
                         SizedBox(height:8),
 
@@ -162,7 +154,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                         ),
                         SizedBox(height:4),
                         Text(
-                          'CUB padrão de pobre RC1, no valor nominal de 10 reau',
+                          'R\$ $valorCubFormatado',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 100,
                           softWrap: false,
@@ -212,7 +204,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                         ),
                         SizedBox(height:4),
                         Text(
-                          'R\$ ${valorFormatado}',
+                          'R\$ $valorFormatado',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 100,
                           softWrap: false,
@@ -319,7 +311,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                         ),
                         SizedBox(height:4),
                         Text(
-                          '${empBusiness.calcularValorComercialTerreno(empreendimento).toString()}',
+                          'R\$ $valorComercialTerrenoFormatado',
                           overflow: TextOverflow.ellipsis,
                           maxLines: 100,
                           softWrap: false,

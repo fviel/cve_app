@@ -22,7 +22,15 @@ import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 
 ///Implementação das fórmulas de cálculo com base no artigo
 ///do Sr. Fernando de Mar/21
-class EmpreendimentoBusiness{
+class EmpreendimentoBusinessSingleton{
+  static final EmpreendimentoBusinessSingleton _singleton = EmpreendimentoBusinessSingleton._internal();
+
+  factory EmpreendimentoBusinessSingleton() {
+    return _singleton;
+  }
+
+  EmpreendimentoBusinessSingleton._internal();
+
   //1
   double calcularAreaMaximaContruida(Empreendimento emp){
     return emp.areaTerreno * emp.coeficienteAproveitamento;
@@ -46,47 +54,47 @@ class EmpreendimentoBusiness{
   //Calcular todos os valores extra-CUB
   //5.1.
   double calcularCalcadasMuros(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
+    return emp.valorCub * 0.05;
   }
 
   //5.2
   double calcularFundacao(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.2;
+    return emp.valorCub * 0.2;
   }
 
   //5.3
   double calcularPaisagismo(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
+    return emp.valorCub * 0.05;
   }
 
   //5.4
   double calcularProjeto(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
+    return emp.valorCub * 0.05;
   }
 
   //5.5
   double calcularRespTecnica(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.1;
+    return emp.valorCub * 0.1;
   }
 
   //5.6
   double calcularTaxasAprovacoes(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.05;
+    return emp.valorCub * 0.05;
   }
 
   //5.7
   double calcularTaxasAdministracao(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.2;
+    return emp.valorCub * 0.2;
   }
 
   //5.8
   double calcularTaxaVendaEMkt(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.13;
+    return emp.valorCub * 0.13;
   }
 
   //5.9
   double calcularLucroConstrutora(Empreendimento emp){
-    return emp.cubReferencia.valor * 0.15;
+    return emp.valorCub * 0.15;
   }
 
   //5.10

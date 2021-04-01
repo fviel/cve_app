@@ -26,7 +26,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
 
   Empreendimento novoEmp = Empreendimento();
 
-  EmpreendimentoBusiness empBusiness = new EmpreendimentoBusiness();
+  EmpreendimentoBusinessSingleton empBusiness = new EmpreendimentoBusinessSingleton();
 
   List<Cub> cubs = [
     Cub(padrao:'Baixo',
@@ -75,19 +75,13 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
     //   desonerado:false);
 
     novoEmp = Empreendimento(nome:'Novo Empreendimento',
-
-    descricao: 'Descrição',
-    endereco:'Endereço',
-    cubReferencia:new Cub(padrao:'Baixo',
-    classificacao: 'PIS',
-    valor: 1224.99,
-    tipoProjeto:0,
-    estado:'PR',
-    desonerado:false),
-    areaTerreno:0,
-    taxaOcupacao:0,
-    coeficienteAproveitamento:0,
-    valorComercialTerreno:0);
+        descricao: 'Descrição',
+        endereco:'Endereço',
+        valorCub: 1750.94,
+        areaTerreno:0,
+        taxaOcupacao:0,
+        coeficienteAproveitamento:0,
+        valorComercialTerreno:0);
   }
 
   @override

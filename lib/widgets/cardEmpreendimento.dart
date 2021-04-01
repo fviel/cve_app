@@ -13,9 +13,7 @@ class CardEmpreendimento extends StatelessWidget {
   //ou seja, o código dela não está nem nessa classe
   CardEmpreendimento({this.empreendimento, this.delete});
 
-  void apagarEstaCoisa(){
-    delete;
-  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -119,7 +117,7 @@ class CardEmpreendimento extends StatelessWidget {
                     //         new FlatButton(
                     //           child: new Text("Excluir"),
                     //           onPressed: () {
-                    //             apagarEstaCoisa();
+                    //             delete;
                     //             Navigator.of(context).pop();
                     //           },
                     //         ),
