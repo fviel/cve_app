@@ -19,17 +19,11 @@ version: 1.0.0+1
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-
 dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
   flutter_spinkit: ^5.0.0
-#  flutter_native_splash:
-#  image:
-#  archive:
-
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -43,7 +37,6 @@ dev_dependencies:
   #flutter_launcher_icons: ^0.9.0
   flutter_native_splash:
 
-
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -51,8 +44,6 @@ dev_dependencies:
 #  ios: true
 #  android: "launcher_icon"
 #  image_path: "assets/icons/icon.png"
-
-
 
 # The following section is specific to Flutter.
 flutter:
@@ -104,14 +95,14 @@ flutter_native_splash:
   # flutter pub run flutter_native_splash:remove
 
   # color is the only required parameter.  It sets the background color of your splash screen.
-  color: "#42a5f5"
+  color: "#ff0000"
 
   # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
   # the leading # character.
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file.
-  image: assets/images/light_splash.png
+  image: assets/images/khanswlogo.png
 
   # The color_dark and image_dark are parameters that set the color and image when the device is
   # in dark mode.  If they are not specified, the app will use the color and image above.

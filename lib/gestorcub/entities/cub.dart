@@ -1,4 +1,4 @@
-import 'package:meta/meta.dart';
+//import 'package:meta/meta.dart';
 //TODO aprender como gerar o id do objeto, pelo que entendi é esse get na var hashcode
 //TODO aprender como fazer a sobrecarga do operador ==, conforme site https://stackoverflow.com/questions/59474307/error-either-zero-or-2-or-more-dropdownmenuitems-were-detected-with-the-same
 //Representa um valor de CUB informado pelo sinduscon
