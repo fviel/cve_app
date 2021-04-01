@@ -66,6 +66,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   /// initialization is here:
   @override
   void initState() {
+    super.initState();
     _classificacaoSelecionada = classificacoes[0];
     // _cubSelecionado = new Cub(padrao:'pobre',
     //   classificacao:'ruim',

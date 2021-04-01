@@ -186,6 +186,8 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.red,
+        //adicionado apenas para suprimir o warning
+        onPressed: () {},
         child: IconButton(
           onPressed: () async {
             dynamic result = await Navigator.pushNamed(context, '/adicionar');
