@@ -282,31 +282,6 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                           SizedBox(height:8),
 
                           Text(
-                            'Área máxima construível:',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 100,
-                            softWrap: false,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey[800],
-                            ),
-                          ),
-                          SizedBox(height:4),
-                          Text(
-                            '${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²',
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 100,
-                            softWrap: false,
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              fontSize: 14.0,
-                              color: Colors.grey[500],
-                            ),
-                          ),
-                          SizedBox(height:8),
-
-                          Text(
                             'Valor comercial do terreno:',
                             overflow: TextOverflow.ellipsis,
                             maxLines: 100,
