@@ -99,7 +99,7 @@ class EmpreendimentoBusinessSingleton{
 
   //5.10
   //VCC é a soma de todos os valores extra-CUB
-  double calcularValorComercialDasConstrucoes(Empreendimento emp){
+  double calcularValoresExtraCub(Empreendimento emp){
     double calcadasMuros = calcularCalcadasMuros(emp);
     double fundacao = calcularFundacao(emp);
     double paisagismo = calcularPaisagismo(emp);
@@ -125,7 +125,7 @@ class EmpreendimentoBusinessSingleton{
   double calcularValorTotal(Empreendimento emp){
     //Vte = valor do terreno no empreendimento = Vct x CA
     //Vt = Vte + (Amc x Vcc)
-    return (calcularValorComercialTerreno(emp) * emp.coeficienteAproveitamento) + (calcularAreaMaximaContruida(emp) * calcularValorComercialDasConstrucoes(emp));
+    return (calcularValorComercialTerreno(emp) * emp.coeficienteAproveitamento) + (calcularAreaMaximaContruida(emp) * calcularValoresExtraCub(emp));
   }
 
   //7
