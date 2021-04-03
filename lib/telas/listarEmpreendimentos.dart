@@ -8,7 +8,11 @@ class ListarEmpreendimentos extends StatefulWidget {
   _ListarEmpreendimentosState createState() => _ListarEmpreendimentosState();
 }
 
+
+///----------------------
+
 class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
+  String dados = "";
   //array com valores de teste
   List<Empreendimento> empreendimentos = [
     Empreendimento(
@@ -113,6 +117,8 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
 
   @override
   Widget build(BuildContext context) {
+    dados = dados != null ? dados : ModalRoute.of(context).settings.arguments ;
+
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
