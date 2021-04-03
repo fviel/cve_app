@@ -3,6 +3,7 @@
 ///Empreendimento é uma construção, um imóvel, logo tem dados de um imóvel
 class Empreendimento{
 
+  int id;
   String nome;
   String descricao;
   String endereco;
@@ -22,6 +23,7 @@ class Empreendimento{
   double valorComercialTerreno;
 
   Empreendimento({
+    this.id,
     this.nome,
     this.descricao,
     this.endereco,
@@ -31,5 +33,26 @@ class Empreendimento{
     this.coeficienteAproveitamento,
     this.valorComercialTerreno}){
     this.dtHrCriacao = DateTime.now();
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'nome': nome,
+      'descricao': descricao,
+      'endereco': endereco,
+      'valorCub': valorCub,
+      'areaTerreno': areaTerreno,
+      'taxaOcupacao': taxaOcupacao,
+      'coeficienteAproveitamento': coeficienteAproveitamento,
+      'valorComercialTerreno': valorComercialTerreno,
+    };
+  }
+
+
+
+  @override
+  String toString() {
+    return 'Empreendimento{nome: $nome, descricao: $descricao, endereco: $endereco, dtHrCriacao: $dtHrCriacao, valorCub: $valorCub, areaTerreno: $areaTerreno, taxaOcupacao: $taxaOcupacao, coeficienteAproveitamento: $coeficienteAproveitamento, valorComercialTerreno: $valorComercialTerreno}';
   }
 }

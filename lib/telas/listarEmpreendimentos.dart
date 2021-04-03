@@ -8,14 +8,11 @@ class ListarEmpreendimentos extends StatefulWidget {
   _ListarEmpreendimentosState createState() => _ListarEmpreendimentosState();
 }
 
-
-///----------------------
-
 class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
-  String dados = "";
   //array com valores de teste
   List<Empreendimento> empreendimentos = [
     Empreendimento(
+        id: 0,
         nome: 'Teste Um Fernando',
         descricao: 'Teste de tela do Fernando',
         endereco: 'Rua dos Testes, 123, Testelandia, BR',
@@ -25,50 +22,53 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
         coeficienteAproveitamento: 10.3,
         valorComercialTerreno: 100040.20),
     Empreendimento(
+        id: 1,
         nome: 'Teste Dois Fernando oijril j,iovjio jv,iore ',
         descricao: 'Teste de tela do Fernando',
         endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 1760.94,
+        valorCub: 1750.94,
         areaTerreno: 20.50,
         taxaOcupacao: 15.5,
         coeficienteAproveitamento: 10.3,
         valorComercialTerreno: 100040.20),
     Empreendimento(
+        id: 2,
         nome: 'Teste Três Fernando',
         descricao:
             'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
         endereco:
             'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
-        valorCub: 1770.94,
+        valorCub: 1750.94,
         areaTerreno: 20.50,
         taxaOcupacao: 15.5,
         coeficienteAproveitamento: 10.3,
         valorComercialTerreno: 100040.20),
     Empreendimento(
+        id: 3,
         nome: 'Teste Quatro Fernando oijril j,iovjio jv,iore ',
         descricao: 'Teste de tela do Fernando',
         endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 1780.94,
+        valorCub: 1750.94,
         areaTerreno: 20.50,
         taxaOcupacao: 15.5,
         coeficienteAproveitamento: 10.3,
         valorComercialTerreno: 100040.20),
     Empreendimento(
+        id: 4,
         nome: 'Teste Cinco Fernando',
-        descricao:
-            'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
-        endereco:
-            'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
-        valorCub: 1950.94,
+        descricao:'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
+        endereco:'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
+        valorCub: 1750.94,
         areaTerreno: 20.50,
         taxaOcupacao: 15.5,
         coeficienteAproveitamento: 10.3,
         valorComercialTerreno: 100040.20),
     Empreendimento(
+        id: 5,
         nome: 'Teste Seis Fernando oijril j,iovjio jv,iore ',
         descricao: 'Teste de tela do Fernando',
         endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 200050.94,
+        valorCub: 1750.94,
         areaTerreno: 20.50,
         taxaOcupacao: 15.5,
         coeficienteAproveitamento: 10.3,
@@ -83,6 +83,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
   ///adiciona um empreendimento com a finalidade de testes
   void adicionarEmpreendimentoTeste() {
     empreendimentos.add(Empreendimento(
+        id: 7,
         nome: 'Emp adicionado para teste',
         descricao: 'Teste de tela do Fernando',
         endereco: 'Rua dos Testes, 123, Testelandia, BR',
@@ -117,8 +118,6 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
 
   @override
   Widget build(BuildContext context) {
-    dados = dados != null ? dados : ModalRoute.of(context).settings.arguments ;
-
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
@@ -190,21 +189,37 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
                 }))
             .toList(),
       ),
+
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.red,
-        //adicionado apenas para suprimir o warning
-        onPressed: () {},
+        onPressed: (){},
+        splashColor: Colors.white,
+        backgroundColor: Colors.redAccent,
         child: IconButton(
           onPressed: () async {
-            dynamic result = await Navigator.pushNamed(context, '/adicionar');
-            if (result != null) {
-              //setState(() {});
-            }
+                dynamic result = await Navigator.pushNamed(context, '/adicionar');
+            //     // if (result != null) {
+            //     //   //setState(() {});
+            //     // }
+            //   },
           },
           icon: Icon(Icons.add),
           color: Colors.white,
         ),
       ),
+
+
+      // floatingActionButton: FloatingActionButton.extended(
+      //   onPressed: () async {
+      //     dynamic result = await Navigator.pushNamed(context, '/adicionar');
+      //     // if (result != null) {
+      //     //   //setState(() {});
+      //     // }
+      //   },
+      //   label: Icon(Icons.add),
+      //   splashColor: Colors.redAccent,
+      //  // icon: const Icon(Icons.add),
+      //   backgroundColor: Colors.red,
+      // ),
     );
   }
 }

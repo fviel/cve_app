@@ -22,9 +22,7 @@ class _LoadingState extends State<Loading> {
     });
   }
 
-  /**
-   *  // initState roda uma única vez, ao instanciar o widget
-   */
+///initState roda uma única vez, ao instanciar o widget
   @override
   void initState() {
     super.initState();
