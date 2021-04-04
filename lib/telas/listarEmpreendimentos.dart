@@ -3,12 +3,26 @@ import 'package:cve_app/widgets/cardEmpreendimento.dart';
 import 'package:cve_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 
+// import 'dart:async';
+// import 'package:flutter/widgets.dart';
+// import 'package:path/path.dart';
+// import 'package:sqflite/sqflite.dart';
+
 class ListarEmpreendimentos extends StatefulWidget {
   @override
   _ListarEmpreendimentosState createState() => _ListarEmpreendimentosState();
 }
 
 class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
+
+  // void setupDb() async{
+  //   var db = await openDatabase('my_db.db');
+  //   // Get a location using getDatabasesPath
+  //   var databasesPath = await getDatabasesPath();
+  //   String path = join(databasesPath, 'demo.db');
+  // }
+
+
   //array com valores de teste
   List<Empreendimento> empreendimentos = [
     Empreendimento(
@@ -115,6 +129,18 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
     //Navigator.pushReplacementNamed(context, '/adicionar');
     Navigator.pushNamed(context, '/adicionar');
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
