@@ -4,27 +4,51 @@ import 'package:cve_app/telas/sobre.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/telas/listarEmpreendimentos.dart';
 
-
-import 'dart:async';
-import 'package:flutter/widgets.dart';
-import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 
 void main() {
+  // We need to call it manually,
+  // because we going to call setPreferredOrientations()
+  // before the runApp() call
+  WidgetsFlutterBinding.ensureInitialized();
 
- runApp(MaterialApp(
-       initialRoute: '/listarEmpreendimentos',
-       debugShowCheckedModeBanner: true,
-
-       routes:{
-         '/listarEmpreendimentos':(context) => ListarEmpreendimentos(),
-         '/exibirEmpreendimento':(context) => ExibirEmpreendimento(),
-         '/sobre': (context) => Sobre(),
-         '/adicionar': (context) => AdicionarEmpreendimento(),
-       }
-   ));
+  // fixa a orientação do app para retrato, para isso precisei importat o services
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(CVEMain()));
 }
+
+class CVEMain extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Notelist',
+      debugShowCheckedModeBanner: true,
+      theme: ThemeData(
+          primarySwatch: Colors.red
+      ),
+      home: ListarEmpreendimentos(),
+      //home: NoteDetail(),
+    );
+  }
+}
+
+
+// void main() {
+//
+//  runApp(MaterialApp(
+//        initialRoute: '/listarEmpreendimentos',
+//        debugShowCheckedModeBanner: true,
+//
+//        routes:{
+//          '/listarEmpreendimentos':(context) => ListarEmpreendimentos(),
+//          '/exibirEmpreendimento':(context) => ExibirEmpreendimento(),
+//          '/sobre': (context) => Sobre(),
+//          '/adicionar': (context) => AdicionarEmpreendimento(),
+//        }
+//    ));
+// }
 
 // void main() {
 //   runApp(MaterialApp(

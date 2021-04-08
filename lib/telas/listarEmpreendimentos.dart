@@ -2,11 +2,12 @@ import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 import 'package:cve_app/widgets/cardEmpreendimento.dart';
 import 'package:cve_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
+import 'package:cve_app/utils/databasehelper.dart';
+import 'package:sqflite/sqflite.dart';
 
-// import 'dart:async';
-// import 'package:flutter/widgets.dart';
-// import 'package:path/path.dart';
-// import 'package:sqflite/sqflite.dart';
+import 'package:cve_app/telas/exibirEmpreendimento.dart';
+import 'package:cve_app/telas/adicionarEmpreendimento.dart';
+import 'package:cve_app/telas/sobre.dart';
 
 class ListarEmpreendimentos extends StatefulWidget {
   @override
@@ -14,159 +15,106 @@ class ListarEmpreendimentos extends StatefulWidget {
 }
 
 class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
+  //helper do db para chamar o métodos
+  final DatabaseHelper dbHelper = DatabaseHelper();
 
-  // void setupDb() async{
-  //   var db = await openDatabase('my_db.db');
-  //   // Get a location using getDatabasesPath
-  //   var databasesPath = await getDatabasesPath();
-  //   String path = join(databasesPath, 'demo.db');
-  // }
+  //lista de notas a serem exibidas
+  List<Empreendimento> EmpreendimentoList;
+  int count = 0;
 
-
-  //array com valores de teste
-  List<Empreendimento> empreendimentos = [
-    Empreendimento(
-        id: 0,
-        nome: 'Teste Um Fernando',
-        descricao: 'Teste de tela do Fernando',
-        endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20),
-    Empreendimento(
-        id: 1,
-        nome: 'Teste Dois Fernando oijril j,iovjio jv,iore ',
-        descricao: 'Teste de tela do Fernando',
-        endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20),
-    Empreendimento(
-        id: 2,
-        nome: 'Teste Três Fernando',
-        descricao:
-            'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
-        endereco:
-            'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20),
-    Empreendimento(
-        id: 3,
-        nome: 'Teste Quatro Fernando oijril j,iovjio jv,iore ',
-        descricao: 'Teste de tela do Fernando',
-        endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20),
-    Empreendimento(
-        id: 4,
-        nome: 'Teste Cinco Fernando',
-        descricao:'Teste de tela do Fernando, iosfvuih iou hvuihsvui huifv hufv huidfvh uidzfh vuisdfh fvuihd uivh uihvuisdvf',
-        endereco:'Rua dos Testes, 123, Testelandia, BR, iucbhu nsndc uindfcuibn uicn uidfncuin uicn uidnucn uids',
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20),
-    Empreendimento(
-        id: 5,
-        nome: 'Teste Seis Fernando oijril j,iovjio jv,iore ',
-        descricao: 'Teste de tela do Fernando',
-        endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20),
-  ];
-
-  ///remove um empreendimento do array
-  void removerEmpreendimento(Empreendimento emp) {
-    empreendimentos.remove(emp);
-  }
-
-  ///adiciona um empreendimento com a finalidade de testes
-  void adicionarEmpreendimentoTeste() {
-    empreendimentos.add(Empreendimento(
-        id: 7,
-        nome: 'Emp adicionado para teste',
-        descricao: 'Teste de tela do Fernando',
-        endereco: 'Rua dos Testes, 123, Testelandia, BR',
-        //cubReferencia: null,
-        valorCub: 1750.94,
-        areaTerreno: 20.50,
-        taxaOcupacao: 15.5,
-        coeficienteAproveitamento: 10.3,
-        valorComercialTerreno: 100040.20));
-  }
-
-  void exibirTelaSobre() {
-    //pushNamed chamaria a próxima rota, mas manteria o widget atual na stack de memória
-    //Navigator.pushNamed(context, '/home');
-    //já  pushReplacementNamed, irá remover o widget atual da stack e colocar o novo
-    Navigator.pushReplacementNamed(context, '/sobre', arguments: {});
-  }
-
-  void exibirTelaExibirEmpreendimento(Empreendimento emp) {
-    //pushNamed chamaria a próxima rota, mas manteria o widget atual na stack de memória
-    //Navigator.pushNamed(context, '/home');
-    //já  pushReplacementNamed, irá remover o widget atual da stack e colocar o novo
-    Navigator.pushReplacementNamed(context, '/home', arguments: {
-      'empreendimento': emp,
-    });
-  }
-
-  void exibirTelaNovoEmpreendimento() {
-    //Navigator.pushReplacementNamed(context, '/adicionar');
-    Navigator.pushNamed(context, '/adicionar');
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
+  //usando métodos separados, fica mais limpo o código da tela
   @override
   Widget build(BuildContext context) {
+    //inicialização da list de notas
+    if (EmpreendimentoList == null) {
+      EmpreendimentoList = <Empreendimento>[];
+      //atualiza a lista de notas com o BD
+      updateListView();
+    }
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        title: TopBar(),
-        centerTitle: false,
-        backgroundColor: Colors.red,
-        actions: <Widget>[
-          FlatButton.icon(
-              icon: Icon(
-                Icons.settings,
-                color: Colors.grey[800],
-                size: 20.0,
-              ),
-              label: Text(
-                'Config',
-                style: TextStyle(
-                  fontSize: 12.0,
-                  color: Colors.grey[800],
+      appBar: getAppBar(),
+      body: getEmpreendimentoListView(),
+      floatingActionButton: getFloatingButton(),
+    );
+  }
+
+  ///Método para retornar a lista de cards
+  ListView getEmpreendimentoListView() {
+    //define um stylo de texto
+    TextStyle titleStyle = Theme.of(context).textTheme.subtitle1;
+
+    return ListView.builder(
+        itemCount: count,
+        itemBuilder: (BuildContext context, int position) {
+          return Card(
+              color: Colors.white,
+              elevation: 2.0,
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blue[300],
+                  child: Icon(Icons.apartment, color: Colors.blue[900]),
                 ),
-              ),
-              onPressed: () {
-                //widget.telaASerExibida();
-              }),
+                title: Text(this.EmpreendimentoList[position].nome,
+                    style: titleStyle),
+                subtitle: Text(this.EmpreendimentoList[position].descricao),
+
+                ///O GestureDetector consegue identificar eventos no elemento
+                ///que originalmente não os detecta
+                trailing: GestureDetector(
+                  child: Icon(Icons.delete, color: Colors.grey),
+                  onTap: () {
+                    _excluir(context, this.EmpreendimentoList[position]);
+                  },
+                ),
+                onTap: () {
+                  debugPrint('clicou no card');
+                  navegarParaDetalhesCard(
+                      this.EmpreendimentoList[position]);
+                },
+              ));
+        });
+  }
+
+  ///Método para retornar o floating button da página e limpar o código do style
+  FloatingActionButton getFloatingButton() {
+    return FloatingActionButton(
+        onPressed: () {
+          debugPrint('clicou no floating');
+          // await Navigator.push(context, MaterialPageRoute(builder: (context) {
+          //   return EmpreendimentoDetail();
+          // }));
+          navegarParaAdicionarEmpreendimento();
+        },
+        tooltip: 'Adicionar nota',
+        child: Icon(
+          Icons.add,
+        ));
+  }
+
+  //retorna o appBar da tela
+  AppBar getAppBar() {
+    return AppBar(
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Icon(
+            Icons.apartment,
+            color: Colors.white,
+            size: 20.0,
+          ),
+          SizedBox(width: 2),
+          Text(
+            'Empreendimentos',
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+        actions: <Widget>[
+
+
           FlatButton.icon(
             icon: Icon(
               Icons.assignment_ind,
@@ -181,71 +129,76 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
               ),
             ),
             onPressed: () async {
-              dynamic result = await Navigator.pushNamed(context, '/sobre');
-              if (result != null) {
-                ///setState(() {
-                //                       //dados recebe um map
-                //                       dados = {
-                //                         'time': result['time'],
-                //                         'location': result['location'],
-                //                         'isDayTime': result['isDayTime'],
-                //                         'flag': result['flag'],
-                //                       };
-                //                     });
-                print('ok');
+              bool resultado = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Sobre();
+              }));
+              if (resultado) {
+                updateListView();
               }
             },
           ),
+
+
         ],
-      ),
-      body: ListView(
-        //
-        // mainAxisAlignment: MainAxisAlignment.start,
-        // crossAxisAlignment: CrossAxisAlignment.start,
 
-        //mapeia cada objeto do array em um card
-        children: empreendimentos
-            .map((empreendimento) => new CardEmpreendimento(
-                empreendimento: empreendimento,
-                delete: () {
-                  setState(() {
-                    //empreendimentos.remove(empreendimento);
-                    removerEmpreendimento(empreendimento);
-                  });
-                }))
-            .toList(),
-      ),
-
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        splashColor: Colors.white,
-        backgroundColor: Colors.redAccent,
-        child: IconButton(
-          onPressed: () async {
-                dynamic result = await Navigator.pushNamed(context, '/adicionar');
-            //     // if (result != null) {
-            //     //   //setState(() {});
-            //     // }
-            //   },
-          },
-          icon: Icon(Icons.add),
-          color: Colors.white,
-        ),
-      ),
-
-
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () async {
-      //     dynamic result = await Navigator.pushNamed(context, '/adicionar');
-      //     // if (result != null) {
-      //     //   //setState(() {});
-      //     // }
-      //   },
-      //   label: Icon(Icons.add),
-      //   splashColor: Colors.redAccent,
-      //  // icon: const Icon(Icons.add),
-      //   backgroundColor: Colors.red,
-      // ),
     );
+  }
+
+  void navegarParaDetalhesCard(Empreendimento empreendimento) async {
+    //o bool resultado recebe o valor que foi passado no pop da tela de detalhes
+    bool resultado = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return ExibirEmpreendimento(empreendimento);
+    }));
+    if (resultado) {
+      updateListView();
+    }
+  }
+
+  void navegarParaAdicionarEmpreendimento() async {
+    //o bool resultado recebe o valor que foi passado no pop da tela de detalhes
+    bool resultado = await Navigator.push(
+        context, MaterialPageRoute(builder: (context) {
+      return AdicionarEmpreendimento();
+      return null;
+    }));
+    if (resultado) {
+      updateListView();
+    }
+  }
+
+  ///Excluir no BD a nota selecionada
+  void _excluir(BuildContext context, Empreendimento empreendimento) async {
+    int resultado = await dbHelper.delete(empreendimento.id);
+    if (resultado != 0) {
+      //exibe a mensagem
+      _showSnackBar(context, '${empreendimento.nome} excluído com sucesso');
+      //Atualizar o listview com as notas
+      updateListView();
+    }
+  }
+
+  ///exibe a mensagem de delete na tela do usuário
+  void _showSnackBar(BuildContext context, String mesg) {
+    final snackBar = SnackBar(content: Text(mesg));
+    //Scaffold.of(context).showSnackBar(snackbar); // deprecado!
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  ///Carrega toda a lista d enotas do BD
+  void updateListView() {
+    //inicializa o BD
+    final Future<Database> dbFuture = dbHelper.initializeDatabase();
+    dbFuture.then((database) {
+      //após inicializado, obtém a lista de notas
+      Future<List<Empreendimento>> EmpreendimentoListFuture =
+          dbHelper.getListaEmpreendimentos();
+      //atualiza a tela atual, após carregar a lista de notas
+      EmpreendimentoListFuture.then((EmpreendimentoList) {
+        setState(() {
+          this.EmpreendimentoList = EmpreendimentoList;
+          this.count = EmpreendimentoList.length;
+        });
+      });
+    });
   }
 }

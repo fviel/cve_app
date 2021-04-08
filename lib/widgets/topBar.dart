@@ -13,7 +13,7 @@ class TopBar extends StatelessWidget {
         ),
         SizedBox(width: 2),
         Text(
-          'Empreendimentos',
+          'Exibir Empreendimento',
           style: TextStyle(
             fontSize: 16.0,
             color: Colors.white,

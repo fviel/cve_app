@@ -1,0 +1,3 @@
+const int TAM_MAX_NOME=255;
+const int TAM_MAX_DESCRICAO=255;
+const int TAM_MAX_ENDERECO=255;
