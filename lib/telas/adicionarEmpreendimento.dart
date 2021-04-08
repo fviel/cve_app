@@ -1,9 +1,7 @@
-import 'package:cve_app/empreendimentos/business/empreendimentoBusiness.dart';
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 import 'package:cve_app/utils/databasehelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cve_app/widgets/topBar.dart';
 import 'package:intl/intl.dart';
 
 //TODO Trocar o ícone do app:
@@ -24,7 +22,6 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
 
   //formKey desta tela
   final _formKey = GlobalKey<FormState>();
-  final List<String> _prioridades = ['Alta', 'Média', 'Baixa'];
 
   Empreendimento empreendimento = new Empreendimento('', '', '', 0, 0, 0, 0, 0);
   TextEditingController nomeCtrl = TextEditingController();
@@ -79,33 +76,6 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
         key: _formKey,
         child: ListView(
           children: <Widget>[
-            // ListTile(
-            //     title: DropdownButton(
-            //   hint: Text('Prioridades'),
-            //   icon: Icon(
-            //     Icons.cached,
-            //     color: Colors.red,
-            //   ),
-            //   elevation: 2,
-            //   dropdownColor: Colors.red[100],
-            //   autofocus: true,
-            //
-            //   items: _prioridades.map((String valorComoString) {
-            //     return DropdownMenuItem<String>(
-            //         value: valorComoString, child: Text(valorComoString));
-            //   }).toList(),
-            //   style: textStyle,
-            //   //valor default
-            //   value: getPrioridadeComoString(Empreendimento.prioridade),
-            //   onChanged: (valorSelecionadoPeloUsuario) {
-            //     setState(() {
-            //       debugPrint(
-            //           'Valor selecionado no dropdown: $valorSelecionadoPeloUsuario');
-            //       updatePrioridadeComoInt(valorSelecionadoPeloUsuario);
-            //     });
-            //   },
-            // )
-            // ),
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
@@ -469,23 +439,23 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
 
-  void _excluir() async {
-    voltarParaAUltimaTela();
-
-    //se o usuário tentar excluir uma anotação nova (sem sentido) ele veio para esta tela pelo FAB
-    if (empreendimento.id == null) {
-      _showAlertDialog('Empreendimento', 'Nenhum empreendimento excluído');
-      return;
-    } else {
-      //usuário está tentando excluir uma anotação existente
-      int resultado = await dbHelper.delete(empreendimento.id);
-      if (resultado != 0) {
-        //sucesso
-        _showAlertDialog('Empreendimento', 'Empreendimento excluído com sucesso');
-      } else {
-        //falha
-        _showAlertDialog('Empreendimento', 'Falha ao excluir empreendimento');
-      }
-    }
-  }
+  // void _excluir() async {
+  //   voltarParaAUltimaTela();
+  //
+  //   //se o usuário tentar excluir uma anotação nova (sem sentido) ele veio para esta tela pelo FAB
+  //   if (empreendimento.id == null) {
+  //     _showAlertDialog('Empreendimento', 'Nenhum empreendimento excluído');
+  //     return;
+  //   } else {
+  //     //usuário está tentando excluir uma anotação existente
+  //     int resultado = await dbHelper.delete(empreendimento.id);
+  //     if (resultado != 0) {
+  //       //sucesso
+  //       _showAlertDialog('Empreendimento', 'Empreendimento excluído com sucesso');
+  //     } else {
+  //       //falha
+  //       _showAlertDialog('Empreendimento', 'Falha ao excluir empreendimento');
+  //     }
+  //   }
+  // }
 }

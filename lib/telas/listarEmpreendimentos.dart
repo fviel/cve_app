@@ -1,6 +1,4 @@
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
-import 'package:cve_app/widgets/cardEmpreendimento.dart';
-import 'package:cve_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/utils/databasehelper.dart';
 import 'package:sqflite/sqflite.dart';
@@ -19,15 +17,15 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
   final DatabaseHelper dbHelper = DatabaseHelper();
 
   //lista de notas a serem exibidas
-  List<Empreendimento> EmpreendimentoList;
+  List<Empreendimento> empreendimentoList;
   int count = 0;
 
   //usando métodos separados, fica mais limpo o código da tela
   @override
   Widget build(BuildContext context) {
     //inicialização da list de notas
-    if (EmpreendimentoList == null) {
-      EmpreendimentoList = <Empreendimento>[];
+    if (empreendimentoList == null) {
+      empreendimentoList = <Empreendimento>[];
       //atualiza a lista de notas com o BD
       updateListView();
     }
@@ -54,22 +52,22 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
                   backgroundColor: Colors.blue[300],
                   child: Icon(Icons.apartment, color: Colors.blue[900]),
                 ),
-                title: Text(this.EmpreendimentoList[position].nome,
+                title: Text(this.empreendimentoList[position].nome,
                     style: titleStyle),
-                subtitle: Text(this.EmpreendimentoList[position].descricao),
+                subtitle: Text(this.empreendimentoList[position].descricao),
 
                 ///O GestureDetector consegue identificar eventos no elemento
                 ///que originalmente não os detecta
                 trailing: GestureDetector(
                   child: Icon(Icons.delete, color: Colors.grey),
                   onTap: () {
-                    _excluir(context, this.EmpreendimentoList[position]);
+                    _excluir(context, this.empreendimentoList[position]);
                   },
                 ),
                 onTap: () {
                   debugPrint('clicou no card');
                   navegarParaDetalhesCard(
-                      this.EmpreendimentoList[position]);
+                      this.empreendimentoList[position]);
                 },
               ));
         });
@@ -159,7 +157,6 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
     bool resultado = await Navigator.push(
         context, MaterialPageRoute(builder: (context) {
       return AdicionarEmpreendimento();
-      return null;
     }));
     if (resultado) {
       updateListView();
@@ -190,13 +187,13 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
     final Future<Database> dbFuture = dbHelper.initializeDatabase();
     dbFuture.then((database) {
       //após inicializado, obtém a lista de notas
-      Future<List<Empreendimento>> EmpreendimentoListFuture =
+      Future<List<Empreendimento>> empreendimentoListFuture =
           dbHelper.getListaEmpreendimentos();
       //atualiza a tela atual, após carregar a lista de notas
-      EmpreendimentoListFuture.then((EmpreendimentoList) {
+      empreendimentoListFuture.then((empreendimentoList) {
         setState(() {
-          this.EmpreendimentoList = EmpreendimentoList;
-          this.count = EmpreendimentoList.length;
+          this.empreendimentoList = empreendimentoList;
+          this.count = empreendimentoList.length;
         });
       });
     });

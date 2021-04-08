@@ -1,12 +1,6 @@
-import 'package:cve_app/telas/adicionarEmpreendimento.dart';
-import 'package:cve_app/telas/exibirEmpreendimento.dart';
-import 'package:cve_app/telas/sobre.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/telas/listarEmpreendimentos.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 
 void main() {
   // We need to call it manually,

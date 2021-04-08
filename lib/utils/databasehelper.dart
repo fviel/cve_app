@@ -57,8 +57,8 @@ class DatabaseHelper {
     String path = directory.path + 'empreendimentos.db';
 
     //Abre e cria o db
-    var EmpreendimentosDb = await openDatabase(path, onCreate: _createDb, version: 1);
-    return EmpreendimentosDb;
+    var empreendimentosDb = await openDatabase(path, onCreate: _createDb, version: 1);
+    return empreendimentosDb;
   }
 
   ///Cria a tabela
@@ -122,27 +122,27 @@ class DatabaseHelper {
   }
 
   Future<List<Empreendimento>> getListaEmpreendimentos() async{
-    var EmpreendimentoMapList = await listarTodosEmpreendimentosOrdenandoPorNome();
-    int count = EmpreendimentoMapList.length;
-    List<Empreendimento> EmpreendimentoList= <Empreendimento>[];
+    var empreendimentoMapList = await listarTodosEmpreendimentosOrdenandoPorNome();
+    int count = empreendimentoMapList.length;
+    List<Empreendimento> empreendimentoList= <Empreendimento>[];
     for(int i = 0; i < count; i++){
-      EmpreendimentoList.add(Empreendimento.fromMapObject(EmpreendimentoMapList[i]));
+      empreendimentoList.add(Empreendimento.fromMapObject(empreendimentoMapList[i]));
     }
-    return EmpreendimentoList;
+    return empreendimentoList;
   }
 
 //Insert
-  Future<int> insert(Empreendimento Empreendimento) async {
+  Future<int> insert(Empreendimento empreendimento) async {
     Database db = await this.database;
-    var resultado = await db.insert(nomeTabela, Empreendimento.toMap());
+    var resultado = await db.insert(nomeTabela, empreendimento.toMap());
     return resultado;
   }
 
 //Update
-  Future<int> update(Empreendimento Empreendimento) async {
+  Future<int> update(Empreendimento empreendimento) async {
     Database db = await this.database;
-    var resultado = await db.update(nomeTabela, Empreendimento.toMap(),
-        where: '$colId = ?', whereArgs: [Empreendimento.id]);
+    var resultado = await db.update(nomeTabela, empreendimento.toMap(),
+        where: '$colId = ?', whereArgs: [empreendimento.id]);
     return resultado;
   }
 

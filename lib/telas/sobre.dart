@@ -1,4 +1,3 @@
-import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 import 'package:cve_app/widgets/topBar.dart';
 import 'package:flutter/material.dart';
 
