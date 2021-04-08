@@ -2,7 +2,11 @@ import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
 import 'package:cve_app/utils/databasehelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+
+import 'dart:math' as math;
 
 //TODO Trocar o ícone do app:
 //https://stackoverflow.com/questions/43928702/how-to-change-the-application-launcher-icon-on-flutter
@@ -163,6 +167,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: valorCubCtrl,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
@@ -171,6 +177,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    prefixText: 'R\$',
                     labelText: "Valor do CUB",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -189,6 +196,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: areaTerrenoCtrl,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
@@ -215,6 +224,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: taxaOcupacaoCtrl,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
@@ -241,6 +252,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: coeficienteAproveitamentoCtrl,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
@@ -267,6 +280,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
             Padding(
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
+                keyboardType: TextInputType.numberWithOptions(decimal: true),
+                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: valorComercialTerrenoCtrl,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
@@ -275,6 +290,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                  prefixText: 'R\$',
                     labelText: "Valor comercial do terreno em R\$",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
