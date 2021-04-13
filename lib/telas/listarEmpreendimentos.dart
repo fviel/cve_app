@@ -30,6 +30,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       updateListView();
     }
     return Scaffold(
+      backgroundColor: Colors.grey[300],
       appBar: getAppBar(),
       body: getEmpreendimentoListView(),
       floatingActionButton: getFloatingButton(),
@@ -44,32 +45,35 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
     return ListView.builder(
         itemCount: count,
         itemBuilder: (BuildContext context, int position) {
-          return Card(
-              color: Colors.white,
-              elevation: 2.0,
-              child: ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.blue[300],
-                  child: Icon(Icons.apartment, color: Colors.blue[900]),
-                ),
-                title: Text(this.empreendimentoList[position].nome,
-                    style: titleStyle),
-                subtitle: Text(this.empreendimentoList[position].descricao),
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical:2, horizontal:2),
+            child: Card(
+                color: Colors.white,
+                elevation: 5.0,
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.blue[300],
+                    child: Icon(Icons.apartment, color: Colors.blue[900]),
+                  ),
+                  title: Text(this.empreendimentoList[position].nome,
+                      style: titleStyle),
+                  subtitle: Text(this.empreendimentoList[position].descricao),
 
-                ///O GestureDetector consegue identificar eventos no elemento
-                ///que originalmente não os detecta
-                trailing: GestureDetector(
-                  child: Icon(Icons.delete, color: Colors.grey),
+                  ///O GestureDetector consegue identificar eventos no elemento
+                  ///que originalmente não os detecta
+                  trailing: GestureDetector(
+                    child: Icon(Icons.delete, color: Colors.grey),
+                    onTap: () {
+                      _excluir(context, this.empreendimentoList[position]);
+                    },
+                  ),
                   onTap: () {
-                    _excluir(context, this.empreendimentoList[position]);
+                    debugPrint('clicou no card');
+                    navegarParaDetalhesCard(
+                        this.empreendimentoList[position]);
                   },
-                ),
-                onTap: () {
-                  debugPrint('clicou no card');
-                  navegarParaDetalhesCard(
-                      this.empreendimentoList[position]);
-                },
-              ));
+                )),
+          );
         });
   }
 
@@ -116,14 +120,14 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
           FlatButton.icon(
             icon: Icon(
               Icons.assignment_ind,
-              color: Colors.grey[800],
+              color: Colors.grey[300],
               size: 20.0,
             ),
             label: Text(
               'Sobre',
               style: TextStyle(
                 fontSize: 12.0,
-                color: Colors.grey[800],
+                color: Colors.grey[300],
               ),
             ),
             onPressed: () async {

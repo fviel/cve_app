@@ -27,24 +27,24 @@ class _SobreState extends State<Sobre> {
             title: TopBar(),
             centerTitle: false,
             backgroundColor: Colors.red,
-            actions: <Widget>[
-              FlatButton.icon(
-                  icon: Icon(
-                    Icons.settings,
-                    color: Colors.grey[800],
-                    size: 20.0,
-                  ),
-                  label: Text(
-                    'Config',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      color: Colors.grey[800],
-                    ),
-                  ),
-                  onPressed: () {
-                    //widget.telaASerExibida();
-                  }),
-            ],
+            // actions: <Widget>[
+            //   FlatButton.icon(
+            //       icon: Icon(
+            //         Icons.settings,
+            //         color: Colors.grey[800],
+            //         size: 20.0,
+            //       ),
+            //       label: Text(
+            //         'Config',
+            //         style: TextStyle(
+            //           fontSize: 12.0,
+            //           color: Colors.grey[800],
+            //         ),
+            //       ),
+            //       onPressed: () {
+            //         //widget.telaASerExibida();
+            //       }),
+            // ],
           ),
           body: Padding(
             padding: const EdgeInsets.all(12.0),

@@ -84,6 +84,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
                 controller: nomeCtrl,
+                maxLength: 255,
                 validator: (val) {
                   if (val.isEmpty) {
                     return 'Informe o nome';
@@ -94,8 +95,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   //icon: Icon(Icons.apartment),
                   //focusColor: Colors.purpleAccent,isCollapsed: false,
                   //fillColor: Colors.purple,
-                    prefixText: 'foo',
-                    suffixText: 'lala',
+                  //   prefixText: 'foo',
+                  //   suffixText: 'lala',
 
                     labelText: "Nome",
                     labelStyle: textStyle,
@@ -116,6 +117,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
                 controller: descricaoCtrl,
+                maxLength: 255,
                 validator: (val) {
                   if (val.isEmpty) {
                     return 'Informe uma descrição';
@@ -142,6 +144,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
                 controller: enderecoCtrl,
+                maxLength: 255,
                 validator: (val) {
                   if (val.isEmpty) {
                     return 'Informe um endereço';
@@ -170,6 +173,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: valorCubCtrl,
+                maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe um valor válido para o CUB';
@@ -177,6 +181,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    counterText: "",
                     prefixText: 'R\$',
                     labelText: "Valor do CUB",
                     labelStyle: textStyle,
@@ -199,6 +204,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: areaTerrenoCtrl,
+                maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe uma área válida do terreno em m²';
@@ -206,6 +212,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    counterText: "",
                     labelText: "Área do terreno em m²",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -227,6 +234,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: taxaOcupacaoCtrl,
+                maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe uma taxa de ocupação válida';
@@ -234,6 +242,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    counterText: "",
                     labelText: "Taxa de ocupação",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -255,6 +264,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: coeficienteAproveitamentoCtrl,
+                maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe um coeficiente de aproveitamento válido';
@@ -262,6 +272,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    counterText: "",
                     labelText: "Coeficiente de aproveitamento",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -283,6 +294,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: valorComercialTerrenoCtrl,
+                maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe um valor comercial válido em R\$';
@@ -290,6 +302,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   return null;
                 },
                 decoration: InputDecoration(
+                    counterText: "",
                   prefixText: 'R\$',
                     labelText: "Valor comercial do terreno em R\$",
                     labelStyle: textStyle,

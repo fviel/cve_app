@@ -54,20 +54,20 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
             title: TopBar(),
             centerTitle: true,
             backgroundColor: Colors.red,
-            actions: <Widget>[
-              FlatButton.icon(
-                  icon: Icon(Icons.settings,
-                    color: Colors.grey[800],
-                    size: 20.0,),
-                  label: Text('Config',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      color: Colors.grey[800],
-                    ),),
-                  onPressed: () {
-                    //widget.telaASerExibida();
-                  }),
-            ],
+            // actions: <Widget>[
+            //   FlatButton.icon(
+            //       icon: Icon(Icons.settings,
+            //         color: Colors.grey[800],
+            //         size: 20.0,),
+            //       label: Text('Config',
+            //         style: TextStyle(
+            //           fontSize: 12.0,
+            //           color: Colors.grey[800],
+            //         ),),
+            //       onPressed: () {
+            //         //widget.telaASerExibida();
+            //       }),
+            // ],
           ),
           body: ListView(
             children: <Widget>[
