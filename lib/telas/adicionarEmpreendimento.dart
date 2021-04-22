@@ -27,7 +27,15 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   //formKey desta tela
   final _formKey = GlobalKey<FormState>();
 
-  Empreendimento empreendimento = new Empreendimento('', '', '', 0, 0, 0, 0, 0);
+  String nome ="";
+  String descricao ="";
+  String endereco ="";
+  String valorCub ="";
+  String areaTerreno ="";
+  String taxaOcupacao ="";
+  String coeficienteAproveitamento ="";
+  String valorComercialTerreno ="";
+
   TextEditingController nomeCtrl = TextEditingController();
   TextEditingController descricaoCtrl = TextEditingController();
   TextEditingController enderecoCtrl = TextEditingController();
@@ -41,14 +49,15 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   @override
   Widget build(BuildContext context) {
     //atualiza minhas controllers com os dados recebidos da telas de listar
-    nomeCtrl.text = empreendimento.nome;
-    descricaoCtrl.text = empreendimento.descricao;
-    enderecoCtrl.text = empreendimento.endereco;
-    valorCubCtrl.text = empreendimento.valorCub.toString();
-    areaTerrenoCtrl.text = empreendimento.areaTerreno.toString();
-    taxaOcupacaoCtrl.text = empreendimento.taxaOcupacao.toString();
-    coeficienteAproveitamentoCtrl.text = empreendimento.coeficienteAproveitamento.toString();
-    valorComercialTerrenoCtrl.text = empreendimento.valorComercialTerreno.toString();
+
+    nomeCtrl.text = nome;
+    descricaoCtrl.text = descricao;
+    enderecoCtrl.text = endereco;
+    valorCubCtrl.text = valorCub;
+    areaTerrenoCtrl.text = areaTerreno;
+    taxaOcupacaoCtrl.text = taxaOcupacao;
+    coeficienteAproveitamentoCtrl.text = coeficienteAproveitamento;
+    valorComercialTerrenoCtrl.text = valorComercialTerreno;
 
     //https://stackoverflow.com/questions/55790689/how-to-get-input-of-text-controller-as-a-double-flutter
     return WillPopScope(
@@ -340,6 +349,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                         }
                       },
                     ),
+
                   ),
                   // Expanded(
                   //   child: TextButton(
@@ -386,29 +396,29 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
 
 
   void updateTitulo() {
-    empreendimento.nome = nomeCtrl.text;
+    nome = nomeCtrl.text;
   }
 
   void updateDescricao() {
-    empreendimento.descricao = descricaoCtrl.text;
+    descricao = descricaoCtrl.text;
   }
   void updateEndereco(){
-    empreendimento.endereco = enderecoCtrl.text;
+    endereco = enderecoCtrl.text;
   }
   void updateValorCub(){
-    empreendimento.valorCub = double.parse(valorCubCtrl.text);
+    valorCub = valorCubCtrl.text;
   }
   void updateAreaTerreno(){
-    empreendimento.areaTerreno = double.parse(areaTerrenoCtrl.text);
+    areaTerreno = areaTerrenoCtrl.text;
   }
   void updateTaxaOcupacao(){
-    empreendimento.taxaOcupacao = double.parse(taxaOcupacaoCtrl.text);
+    taxaOcupacao = taxaOcupacaoCtrl.text;
   }
   void updateCoeficienteDeAproveitamento(){
-    empreendimento.coeficienteAproveitamento = double.parse(coeficienteAproveitamentoCtrl.text);
+    coeficienteAproveitamento = coeficienteAproveitamentoCtrl.text;
   }
   void updateValorComercialTerreno(){
-    empreendimento.valorComercialTerreno = double.parse(valorComercialTerrenoCtrl.text);
+    valorComercialTerreno = valorComercialTerrenoCtrl.text;
   }
 
 
@@ -428,6 +438,18 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
     //   _showAlertDialog('Empreendimentos', 'Informe um endereço válido');
     //   return;
     // }
+
+    Empreendimento empreendimento = new Empreendimento('', '', '', 0, 0, 0, 0, 0);
+    //aqui, eu preencho o objeto convertyendo as final String nos valores de verdade!
+    //double.parse(
+    empreendimento.nome = nome;
+    empreendimento.descricao = descricao;
+    empreendimento.endereco = endereco;
+    empreendimento.valorCub = double.parse(valorCub);
+    empreendimento.areaTerreno = double.parse(areaTerreno);
+    empreendimento.taxaOcupacao = double.parse(taxaOcupacao);
+    empreendimento.coeficienteAproveitamento = double.parse(coeficienteAproveitamento);
+    empreendimento.valorComercialTerreno = double.parse(valorComercialTerreno);
 
     voltarParaAUltimaTela();
 
