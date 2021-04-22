@@ -38,43 +38,52 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
   }
 
   ///Método para retornar a lista de cards
-  ListView getEmpreendimentoListView() {
+  Container getEmpreendimentoListView() {
     //define um stylo de texto
     TextStyle titleStyle = Theme.of(context).textTheme.subtitle1;
 
-    return ListView.builder(
-        itemCount: count,
-        itemBuilder: (BuildContext context, int position) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical:2, horizontal:2),
-            child: Card(
-                color: Colors.white,
-                elevation: 5.0,
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.blue[300],
-                    child: Icon(Icons.apartment, color: Colors.blue[900]),
-                  ),
-                  title: Text(this.empreendimentoList[position].nome,
-                      style: titleStyle),
-                  subtitle: Text(this.empreendimentoList[position].descricao),
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Color(0xFFF2F2F2), Color(0xFFA6A6A6)]
+        ),
+      ),
+      child: ListView.builder(
+          itemCount: count,
+          itemBuilder: (BuildContext context, int position) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical:2, horizontal:2),
+              child: Card(
+                  color: Colors.white,
+                  elevation: 5.0,
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundColor: Colors.blue[300],
+                      child: Icon(Icons.apartment, color: Colors.blue[900]),
+                    ),
+                    title: Text(this.empreendimentoList[position].nome,
+                        style: titleStyle),
+                    subtitle: Text(this.empreendimentoList[position].descricao),
 
-                  ///O GestureDetector consegue identificar eventos no elemento
-                  ///que originalmente não os detecta
-                  trailing: GestureDetector(
-                    child: Icon(Icons.delete, color: Colors.grey),
+                    ///O GestureDetector consegue identificar eventos no elemento
+                    ///que originalmente não os detecta
+                    trailing: GestureDetector(
+                      child: Icon(Icons.delete, color: Colors.grey),
+                      onTap: () {
+                        _excluir(context, this.empreendimentoList[position]);
+                      },
+                    ),
                     onTap: () {
-                      _excluir(context, this.empreendimentoList[position]);
+                      debugPrint('clicou no card');
+                      navegarParaDetalhesCard(
+                          this.empreendimentoList[position]);
                     },
-                  ),
-                  onTap: () {
-                    debugPrint('clicou no card');
-                    navegarParaDetalhesCard(
-                        this.empreendimentoList[position]);
-                  },
-                )),
-          );
-        });
+                  )),
+            );
+          }),
+    );
   }
 
   ///Método para retornar o floating button da página e limpar o código do style
@@ -116,7 +125,6 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       ),
         actions: <Widget>[
 
-
           FlatButton.icon(
             icon: Icon(
               Icons.assignment_ind,
@@ -139,10 +147,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
               }
             },
           ),
-
-
         ],
-
     );
   }
 
