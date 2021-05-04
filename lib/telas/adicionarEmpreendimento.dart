@@ -334,20 +334,38 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: TextButton(
-                      child: Text('Salvar',
-                      style: TextStyle(
-                        color:Colors.blueAccent,
-                        fontWeight: FontWeight.bold,
-                      )),
-                      onPressed: () {
-                        if (_formKey.currentState.validate()) {
-                          setState(() {
-                            debugPrint('Usuário clicou em salvar');
-                            _saveUpdate();
-                          });
-                        }
-                      },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: TextButton(
+                          style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(Colors.red),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          side: MaterialStateProperty.all(
+                            BorderSide(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+
+                        child: Text('Salvar',
+                        style: TextStyle(
+                          color:Colors.white,
+                          fontWeight: FontWeight.bold,
+                        )),
+
+                        onPressed: () {
+                          if (_formKey.currentState.validate()) {
+                            setState(() {
+                              debugPrint('Usuário clicou em salvar');
+                              _saveUpdate();
+                            });
+                          }
+                        },
+                      ),
                     ),
 
                   ),
@@ -392,8 +410,6 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   void voltarParaAUltimaTela() {
     Navigator.pop(context, true);
   }
-
-
 
   void updateTitulo() {
     nome = nomeCtrl.text;
