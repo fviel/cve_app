@@ -45,8 +45,10 @@ class Empreendimento{
       this._coeficienteAproveitamento,
       this._valorComercialTerreno);
 
+  // ignore: unnecessary_getters_setters
   int get id => _id;
 
+  // ignore: unnecessary_getters_setters
   set id(int value) {
     _id = value;
   } //-----------------------------------------------
@@ -81,9 +83,11 @@ class Empreendimento{
     }
   }
 
+  // ignore: unnecessary_getters_setters
   String get dtHrCriacao => _dtHrCriacao;
 
   //será preenchido pelo sistema, não precisa validar
+  // ignore: unnecessary_getters_setters
   set dtHrCriacao(String value) {
     _dtHrCriacao = value;
   }

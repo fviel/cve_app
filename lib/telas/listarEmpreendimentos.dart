@@ -125,7 +125,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
       ),
         actions: <Widget>[
 
-          FlatButton.icon(
+          TextButton.icon(
             icon: Icon(
               Icons.assignment_ind,
               color: Colors.grey[300],

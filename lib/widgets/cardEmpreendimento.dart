@@ -68,7 +68,7 @@ class CardEmpreendimento extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                FlatButton.icon(
+                TextButton.icon(
                   onPressed: () async{
                     dynamic result = await Navigator.pushNamed(context, '/exibirEmpreendimento', arguments: empreendimento);
                     if(result != null) {
@@ -90,7 +90,7 @@ class CardEmpreendimento extends StatelessWidget {
                 ),
 
                 SizedBox(width: 2),
-                FlatButton.icon(
+                TextButton.icon(
                   onPressed: delete,
                   // onPressed: () {
                   //   showDialog(
