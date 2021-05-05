@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 
+
 //import 'dart:math' as math;
 
 //TODO Trocar o ícone do app:
@@ -21,6 +22,7 @@ class AdicionarEmpreendimento extends StatefulWidget {
 }
 
 class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
+  static const _locale='pt_BR';
   //helper do db para chamar o métodos
   final DatabaseHelper dbHelper = DatabaseHelper();
 
@@ -44,6 +46,10 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   TextEditingController taxaOcupacaoCtrl = TextEditingController();
   TextEditingController coeficienteAproveitamentoCtrl = TextEditingController();
   TextEditingController valorComercialTerrenoCtrl = TextEditingController();
+
+  String _formatNumber(String s) => NumberFormat.decimalPattern(_locale).format(double.parse(s));
+  //String get _currency => NumberFormat.compactSimpleCurrency(locale: _locale).currencySymbol;
+  String get currency => NumberFormat.compactSimpleCurrency(locale: _locale, decimalDigits: 2).currencySymbol;
 
   //Método Build() usando métodos separados, fica mais limpo o código
   @override
@@ -180,18 +186,22 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
-                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
+                //inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
+                inputFormatters: [
+                  WhitelistingTextInputFormatter.digitsOnly,
+                  CurrencyPtBrInputFormatter()
+                ],
                 controller: valorCubCtrl,
                 maxLength: 15,
                 validator: (val) {
-                  if ((val.isEmpty) || (double.parse(val)<=0)) {
+                  if ((val.isEmpty) || (double.parse(val.replaceAll('.', '').replaceAll(',', '.'))<=0)) {
                     return 'Informe um valor válido para o CUB';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                     counterText: "",
-                    prefixText: 'R\$',
+                    //prefixText: 'R\$',
                     labelText: "Valor do CUB",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -301,18 +311,22 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
               padding: EdgeInsets.only(top: 15.0, bottom: 15.0),
               child: TextFormField(
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
-                inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
+                //inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
+                inputFormatters: [
+                  WhitelistingTextInputFormatter.digitsOnly,
+                  CurrencyPtBrInputFormatter()
+                ],
                 controller: valorComercialTerrenoCtrl,
                 maxLength: 15,
                 validator: (val) {
-                  if ((val.isEmpty) || (double.parse(val)<=0)) {
+                  if ((val.isEmpty) || (double.parse(val.replaceAll('.', '').replaceAll(',', '.'))<=0)) {
                     return 'Informe um valor comercial válido em R\$';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                     counterText: "",
-                  prefixText: 'R\$',
+                  //prefixText: 'R\$',
                     labelText: "Valor comercial do terreno em R\$",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -461,11 +475,11 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
     empreendimento.nome = nome;
     empreendimento.descricao = descricao;
     empreendimento.endereco = endereco;
-    empreendimento.valorCub = double.parse(valorCub);
+    empreendimento.valorCub = double.parse(valorCub.replaceAll('.', '').replaceAll(',', '.'));
     empreendimento.areaTerreno = double.parse(areaTerreno);
     empreendimento.taxaOcupacao = double.parse(taxaOcupacao);
     empreendimento.coeficienteAproveitamento = double.parse(coeficienteAproveitamento);
-    empreendimento.valorComercialTerreno = double.parse(valorComercialTerreno);
+    empreendimento.valorComercialTerreno = double.parse(valorComercialTerreno.replaceAll('.', '').replaceAll(',', '.'));
 
     voltarParaAUltimaTela();
 
@@ -525,4 +539,23 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   //     }
   //   }
   // }
+}
+
+class CurrencyPtBrInputFormatter extends TextInputFormatter {
+
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    if(newValue.selection.baseOffset == 0){
+      return newValue;
+    }
+
+    double value = double.parse(newValue.text);
+    final formatter = new NumberFormat("#,##0.00", "pt_BR");
+    //String newText = "R\$ " + formatter.format(value/100);
+    String newText = formatter.format(value/100);
+
+
+    return newValue.copyWith(
+        text: newText,
+        selection: new TextSelection.collapsed(offset: newText.length));
+  }
 }
