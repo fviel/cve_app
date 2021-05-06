@@ -133,4 +133,11 @@ class EmpreendimentoBusinessSingleton{
     //Pi = Vt/Amc (=R$/m²)
     return (emp.valorComercialTerreno / calcularAreaMaximaContruida(emp));
   }
+
+  String converterDoubleEmString(double valor){
+    String resposta;
+    if(valor < 1){
+      resposta = valor.toStringAsPrecision(2);
+    }
+  }
 }

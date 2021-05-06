@@ -121,7 +121,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterado o nome para: $valor');
+                  //debugPrint('Alterado o nome para: $valor');
                   updateTitulo();
                 },
               ),
@@ -148,7 +148,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterada a descrição para: $valor');
+                  //debugPrint('Alterada a descrição para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateDescricao();
                 },
@@ -175,7 +175,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterado o endereço para: $valor');
+                  //debugPrint('Alterado o endereço para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateEndereco();
                 },
@@ -201,7 +201,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 },
                 decoration: InputDecoration(
                     counterText: "",
-                    //prefixText: 'R\$',
+                    prefixText: 'R\$',
                     labelText: "Valor do CUB",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -210,7 +210,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterado o valor do CUB para: $valor');
+                  //debugPrint('Alterado o valor do CUB para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateValorCub();
                 },
@@ -240,7 +240,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterada a área do terreno para: $valor');
+                  //debugPrint('Alterada a área do terreno para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateAreaTerreno();
                 },
@@ -270,7 +270,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterada a taxa de ocupação para: $valor');
+                  //debugPrint('Alterada a taxa de ocupação para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateTaxaOcupacao();
                 },
@@ -300,7 +300,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterada o coeficiente de aproveitamento para: $valor');
+                  //debugPrint('Alterada o coeficiente de aproveitamento para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateCoeficienteDeAproveitamento();
                 },
@@ -326,7 +326,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 },
                 decoration: InputDecoration(
                     counterText: "",
-                  //prefixText: 'R\$',
+                  prefixText: 'R\$',
                     labelText: "Valor comercial do terreno em R\$",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
@@ -335,7 +335,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                     )),
                 style: textStyle,
                 onChanged: (valor) {
-                  debugPrint('Alterado o valor comercial do terreno para: $valor');
+                  //debugPrint('Alterado o valor comercial do terreno para: $valor');
                   //como estou usando a controller, não preciso passar o valor pra função
                   updateValorComercialTerreno();
                 },
@@ -374,7 +374,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                         onPressed: () {
                           if (_formKey.currentState.validate()) {
                             setState(() {
-                              debugPrint('Usuário clicou em salvar');
+                              //debugPrint('Usuário clicou em salvar');
                               _saveUpdate();
                             });
                           }
