@@ -1,3 +1,4 @@
+import 'package:cve_app/shared/app_text_styles.dart';
 import 'package:flutter/material.dart';
 
 class TopBar extends StatelessWidget {
@@ -14,10 +15,11 @@ class TopBar extends StatelessWidget {
         SizedBox(width: 2),
         Text(
           'Exibir Empreendimento',
-          style: TextStyle(
-            fontSize: 16.0,
-            color: Colors.white,
-          ),
+          // style: TextStyle(
+          //   fontSize: 16.0,
+          //   color: Colors.white,
+          // ),
+          style: AppTextStyles.heading,
         ),
       ],
     );

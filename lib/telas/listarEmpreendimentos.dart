@@ -1,4 +1,5 @@
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
+import 'package:cve_app/shared/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/utils/databasehelper.dart';
 import 'package:sqflite/sqflite.dart';
@@ -116,11 +117,11 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
           SizedBox(width: 2),
           Text(
             'Empreendimentos',
-            style: TextStyle(
-              fontSize: 16.0,
-              color: Colors.white,
+            // style: TextStyle(
+            //   fontSize: 16.0,
+            //   color: Colors.white,
+            style: AppTextStyles.heading,
             ),
-          ),
         ],
       ),
         actions: <Widget>[

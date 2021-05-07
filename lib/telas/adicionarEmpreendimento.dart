@@ -1,4 +1,5 @@
 import 'package:cve_app/empreendimentos/entities/empreendimento.dart';
+import 'package:cve_app/shared/app_text_styles.dart';
 import 'package:cve_app/utils/databasehelper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -85,10 +86,11 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   ///Método para retornar a lista de cards
   Padding getEmpreendimentoListView() {
     //define um estilo de texto
-    TextStyle textStyle = Theme.of(context).textTheme.subtitle1;
-    textStyle = textStyle.merge(TextStyle(color:Colors.grey[700]));
+    // TextStyle textStyle = Theme.of(context).textTheme.subtitle1;
+    // textStyle = textStyle.merge(TextStyle(color:Colors.grey[700]));
+    TextStyle textStyle = AppTextStyles.body;
 
-
+//
     return Padding(
       padding: EdgeInsets.all(12.0),
       child: Form(
@@ -409,7 +411,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   /// itens da stack
   AppBar getAppBar() {
     return AppBar(
-      title: Text('Novo empreendimento'),
+      title: Text('Novo empreendimento',
+      style: AppTextStyles.heading,),
       leading: IconButton(
         icon: Icon(
           Icons.arrow_back,
@@ -505,8 +508,11 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
 
   void _showAlertDialog(String titulo, String conteudo) {
     AlertDialog alertDialog = AlertDialog(
-      title: Text(titulo),
-      content: Text(conteudo),
+      title: Text(titulo,
+        style: AppTextStyles.heading,),
+      content: Text(conteudo,
+      style: AppTextStyles.body,
+      ),
     );
     showDialog(
       context: context,
