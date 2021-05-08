@@ -29,6 +29,13 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
   void voltarParaAUltimaTela() {
     Navigator.pop(context, true);
   }
+
+  String formatarPrecos(String valorFormatado){
+    if(valorFormatado.substring(0,1) == ","){
+      return "0"+valorFormatado;
+    }
+    return "0"+valorFormatado;
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -38,7 +45,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
     String valorComercialTerrenoFormatado = f.format(empBusiness.calcularValorComercialTerreno(empreendimento));
     String valorExtraCubFormatado = f.format(empBusiness.calcularValoresExtraCub(empreendimento));
     String valorTotalEmpreendimentoFormatado = f.format(empBusiness.calcularValorTotal(empreendimento));
-    String precoInicialM2Formatado = f.format(empBusiness.calcularPrecoInicialM2(empreendimento));
+    String precoInicialM2Formatado = formatarPrecos(f.format(empBusiness.calcularPrecoInicialM2(empreendimento)));
 
 
     return WillPopScope(

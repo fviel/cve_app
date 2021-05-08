@@ -91,7 +91,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
   FloatingActionButton getFloatingButton() {
     return FloatingActionButton(
         onPressed: () {
-          debugPrint('clicou no floating');
+          //debugPrint('clicou no floating');
           // await Navigator.push(context, MaterialPageRoute(builder: (context) {
           //   return EmpreendimentoDetail();
           // }));
@@ -120,7 +120,7 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
             // style: TextStyle(
             //   fontSize: 16.0,
             //   color: Colors.white,
-            style: AppTextStyles.heading,
+            ////;
             ),
         ],
       ),
