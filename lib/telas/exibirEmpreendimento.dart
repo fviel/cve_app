@@ -4,49 +4,52 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cve_app/widgets/topBar.dart';
 import 'package:intl/intl.dart';
-
+import 'package:share_plus/share_plus.dart';
 
 class ExibirEmpreendimento extends StatefulWidget {
   final Empreendimento empreendimento;
+
   //Construtora para receber o objeto a ser exibido
   ExibirEmpreendimento(this.empreendimento);
+
   @override
-  _ExibirEmpreendimentoState createState() => _ExibirEmpreendimentoState(this.empreendimento);
+  _ExibirEmpreendimentoState createState() =>
+      _ExibirEmpreendimentoState(this.empreendimento);
 }
-
-
-
 
 class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
   //Empreendimento empreendimento = new Empreendimento();
-  EmpreendimentoBusinessSingleton empBusiness = EmpreendimentoBusinessSingleton();
+  EmpreendimentoBusinessSingleton empBusiness =
+      EmpreendimentoBusinessSingleton();
 
   Empreendimento empreendimento;
+
   _ExibirEmpreendimentoState(this.empreendimento);
-
-
 
   void voltarParaAUltimaTela() {
     Navigator.pop(context, true);
   }
 
-  String formatarPrecos(String valorFormatado){
-    if(valorFormatado.substring(0,1) == ","){
-      return "0"+valorFormatado;
+  String formatarPrecos(String valorFormatado) {
+    if (valorFormatado.substring(0, 1) == ",") {
+      return "0" + valorFormatado;
     }
-    return "0"+valorFormatado;
+    return "0" + valorFormatado;
   }
-  
+
   @override
   Widget build(BuildContext context) {
     var f = NumberFormat('###,###,###.00', 'pt_BR');
     String valorFormatado = f.format(empreendimento.valorComercialTerreno);
     String valorCubFormatado = f.format(empreendimento.valorCub);
-    String valorComercialTerrenoFormatado = f.format(empBusiness.calcularValorComercialTerreno(empreendimento));
-    String valorExtraCubFormatado = f.format(empBusiness.calcularValoresExtraCub(empreendimento));
-    String valorTotalEmpreendimentoFormatado = f.format(empBusiness.calcularValorTotal(empreendimento));
-    String precoInicialM2Formatado = formatarPrecos(f.format(empBusiness.calcularPrecoInicialM2(empreendimento)));
-
+    String valorComercialTerrenoFormatado =
+        f.format(empBusiness.calcularValorComercialTerreno(empreendimento));
+    String valorExtraCubFormatado =
+        f.format(empBusiness.calcularValoresExtraCub(empreendimento));
+    String valorTotalEmpreendimentoFormatado =
+        f.format(empBusiness.calcularValorTotal(empreendimento));
+    String precoInicialM2Formatado = formatarPrecos(
+        f.format(empBusiness.calcularPrecoInicialM2(empreendimento)));
 
     return WillPopScope(
       onWillPop: () {
@@ -76,16 +79,14 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
             //       }),
             // ],
           ),
-          body: ListView(
-            children: <Widget>[
-
-              Card(
-          margin: EdgeInsets.all(12),
-                child: Padding(
+          body: ListView(children: <Widget>[
+            Card(
+              margin: EdgeInsets.all(12),
+              child: Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(14.0),
@@ -93,33 +94,32 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Expanded(
-                                    flex:2,
-                                    child: Icon(
-                                      // Icons.architecture,
-                                      Icons.business,
-                                      color: Colors.redAccent,
-                                      size: 30.0,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Icon(
+                                    // Icons.architecture,
+                                    Icons.business,
+                                    color: Colors.redAccent,
+                                    size: 30.0,
+                                  ),
+                                ),
+                                SizedBox(width: 2),
+                                Expanded(
+                                  flex: 8,
+                                  child: Text(
+                                    empreendimento.nome,
+                                    style: TextStyle(
+                                      fontSize: 16.0,
+                                      color: Colors.black,
                                     ),
                                   ),
-                                  SizedBox(width:2),
-                                  Expanded(
-                                    flex:8,
-                                    child: Text(
-                                      empreendimento.nome,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            SizedBox(height:8),
-
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8),
                             Text(
                               empreendimento.descricao,
                               overflow: TextOverflow.ellipsis,
@@ -131,8 +131,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               empreendimento.endereco,
                               overflow: TextOverflow.ellipsis,
@@ -144,8 +143,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -162,15 +160,13 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 ),
                               ],
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Divider(
                               height: 12.0,
                               thickness: 1,
                               color: Colors.red[100],
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'CUB aplicado:',
                               overflow: TextOverflow.ellipsis,
@@ -182,7 +178,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               'R\$ $valorCubFormatado',
                               overflow: TextOverflow.ellipsis,
@@ -194,8 +190,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Área do terreno:',
                               overflow: TextOverflow.ellipsis,
@@ -207,7 +202,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               '${empreendimento.areaTerreno} m²',
                               overflow: TextOverflow.ellipsis,
@@ -219,8 +214,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Valor do terreno:',
                               overflow: TextOverflow.ellipsis,
@@ -232,7 +226,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               'R\$ $valorFormatado',
                               overflow: TextOverflow.ellipsis,
@@ -244,8 +238,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Coeficiente de aproveitamento do terreno:',
                               overflow: TextOverflow.ellipsis,
@@ -257,9 +250,10 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
-                              empreendimento.coeficienteAproveitamento.toString(),
+                              empreendimento.coeficienteAproveitamento
+                                  .toString(),
                               overflow: TextOverflow.ellipsis,
                               maxLines: 100,
                               softWrap: false,
@@ -269,15 +263,13 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Divider(
                               height: 12.0,
                               thickness: 1,
                               color: Colors.red[100],
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Área máxima construível:',
                               overflow: TextOverflow.ellipsis,
@@ -289,7 +281,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               '${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²',
                               overflow: TextOverflow.ellipsis,
@@ -301,8 +293,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Valor comercial do terreno:',
                               overflow: TextOverflow.ellipsis,
@@ -314,7 +305,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               'R\$ $valorComercialTerrenoFormatado',
                               overflow: TextOverflow.ellipsis,
@@ -326,8 +317,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Pavimentos:',
                               overflow: TextOverflow.ellipsis,
@@ -339,7 +329,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               '${empBusiness.calcularNumeroPavimentos(empreendimento).toString()} pavimentos',
                               overflow: TextOverflow.ellipsis,
@@ -351,8 +341,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Valores não inclusos no CUB:',
                               overflow: TextOverflow.ellipsis,
@@ -364,7 +353,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               'R\$ $valorExtraCubFormatado',
                               overflow: TextOverflow.ellipsis,
@@ -376,8 +365,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Valor Total do Empreendimento:',
                               overflow: TextOverflow.ellipsis,
@@ -389,7 +377,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               'R\$ $valorTotalEmpreendimentoFormatado',
                               overflow: TextOverflow.ellipsis,
@@ -401,8 +389,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 8),
                             Text(
                               'Preço Inicial do m²:',
                               overflow: TextOverflow.ellipsis,
@@ -414,7 +401,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[800],
                               ),
                             ),
-                            SizedBox(height:4),
+                            SizedBox(height: 4),
                             Text(
                               'R\$ $precoInicialM2Formatado',
                               overflow: TextOverflow.ellipsis,
@@ -426,18 +413,64 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height:8),
-
+                            SizedBox(height: 4),
+                            Expanded(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 32),
+                                child: TextButton(
+                                  style: ButtonStyle(
+                                    backgroundColor:
+                                        MaterialStateProperty.all(Colors.red),
+                                    shape: MaterialStateProperty.all(
+                                      RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                    ),
+                                    side: MaterialStateProperty.all(
+                                      BorderSide(
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Text('Compartilhar',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  onPressed: () {
+                                    setState(() {
+                                      Share.share(
+                                          'Dados gerados no aplicativo de Cálculo de Valor Total de Empreendimentos.\n'+
+                                          'Nome do Empreendimento: $empreendimento.nome;\n'+
+                                          'Descrição: $empreendimento.descricao;\n'+
+                                          'Endereço: $empreendimento.endereco;\n'+
+                                          'Criado em ${empreendimento.dtHrCriacao};\n'+
+                                          'Valor de CUB aplicado: R\$ $valorCubFormatado;\n'+
+                                          'Área do terreno: ${empreendimento.areaTerreno} m²;\n'+
+                                          'Valor do terreno: R\$ $valorFormatado;\n'+
+                                          'Coeficiente de aproveitamento do terreno: $empreendimento.coeficienteAproveitamento.toString();\n'+
+                                          'Área máxima construível: ${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²;\n'+
+                                          'Valor comercial do terreno: R\$ $valorComercialTerrenoFormatado;\n'+
+                                          'Pavimentos: ${empBusiness.calcularNumeroPavimentos(empreendimento).toString()} pavimentos;\n'+
+                                          'Valores não inclusos no CUB: R\$ $valorExtraCubFormatado;\n'+
+                                          'Valor Total do Empreendimento: R\$ $valorTotalEmpreendimentoFormatado;\n'+
+                                          'Preço Inicial do m²: R\$ $precoInicialM2Formatado;'
+                                      );
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 8),
                           ],
                         ),
                       )
-                    ]),
-
-            ),
+                    ]
+                ),
               ),
-      ]
-          )
-   ),
+            ),
+          ])),
     );
   }
 }
