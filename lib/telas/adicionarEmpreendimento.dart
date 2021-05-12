@@ -352,7 +352,10 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 32),
-                      child: TextButton(
+                      child: TextButton.icon(
+                        icon: Icon( Icons.save_outlined,
+                          color: Colors.grey[300],
+                          size: 18,),
                           style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(Colors.red),
                           shape: MaterialStateProperty.all(
@@ -367,7 +370,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                           ),
                         ),
 
-                        child: Text('Salvar',
+                        label: Text('Salvar',
                         style: TextStyle(
                           color:Colors.white,
                           fontWeight: FontWeight.bold,

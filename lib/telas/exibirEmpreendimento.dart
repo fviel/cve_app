@@ -423,7 +423,10 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 Expanded(
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 32),
-                                    child: TextButton(
+                                    child: TextButton.icon(
+                                      icon: Icon( Icons.share,
+                                        color: Colors.grey[300],
+                                        size: 18,),
                                       style: ButtonStyle(
                                         backgroundColor: MaterialStateProperty.all(Colors.red),
                                         shape: MaterialStateProperty.all(
@@ -438,7 +441,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                         ),
                                       ),
 
-                                      child: Text('Compartilhar',
+                                      label: Text('Compartilhar',
                                           style: TextStyle(
                                             color:Colors.white,
                                             fontWeight: FontWeight.bold,
