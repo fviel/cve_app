@@ -455,25 +455,8 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
 
 
   void _saveUpdate() async {
-    //não precisa dessas dialogs, pois estou validando o form
-    // if (empreendimento.nome == null || empreendimento.nome.length == 0) {
-    //   _showAlertDialog('Empreendimentos', 'Informe um nome válido');
-    //   return;
-    // }
-    //
-    // if (empreendimento.descricao == null || empreendimento.descricao.length == 0) {
-    //   _showAlertDialog('Empreendimentos', 'Informe uma descrição válida');
-    //   return;
-    // }
-    //
-    // if (empreendimento.endereco == null || empreendimento.endereco.length == 0) {
-    //   _showAlertDialog('Empreendimentos', 'Informe um endereço válido');
-    //   return;
-    // }
 
     Empreendimento empreendimento = new Empreendimento('', '', '', 0, 0, 0, 0, 0);
-    //aqui, eu preencho o objeto convertyendo as final String nos valores de verdade!
-    //double.parse(
     empreendimento.nome = nome;
     empreendimento.descricao = descricao;
     empreendimento.endereco = endereco;
@@ -482,7 +465,6 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
     empreendimento.taxaOcupacao = double.parse(taxaOcupacao);
     empreendimento.coeficienteAproveitamento = double.parse(coeficienteAproveitamento);
     empreendimento.valorComercialTerreno = double.parse(valorComercialTerreno.replaceAll('.', '').replaceAll(',', '.'));
-
     voltarParaAUltimaTela();
 
     //adiciona a data atomática
@@ -525,25 +507,6 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
   // }
 
-  // void _excluir() async {
-  //   voltarParaAUltimaTela();
-  //
-  //   //se o usuário tentar excluir uma anotação nova (sem sentido) ele veio para esta tela pelo FAB
-  //   if (empreendimento.id == null) {
-  //     _showAlertDialog('Empreendimento', 'Nenhum empreendimento excluído');
-  //     return;
-  //   } else {
-  //     //usuário está tentando excluir uma anotação existente
-  //     int resultado = await dbHelper.delete(empreendimento.id);
-  //     if (resultado != 0) {
-  //       //sucesso
-  //       _showAlertDialog('Empreendimento', 'Empreendimento excluído com sucesso');
-  //     } else {
-  //       //falha
-  //       _showAlertDialog('Empreendimento', 'Falha ao excluir empreendimento');
-  //     }
-  //   }
-  // }
 }
 
 class CurrencyPtBrInputFormatter extends TextInputFormatter {

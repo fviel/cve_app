@@ -6,6 +6,7 @@ import 'package:cve_app/widgets/topBar.dart';
 import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart';
 
+
 class ExibirEmpreendimento extends StatefulWidget {
   final Empreendimento empreendimento;
 
@@ -413,56 +414,49 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                 color: Colors.grey[500],
                               ),
                             ),
-                            SizedBox(height: 4),
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 32),
-                                child: TextButton(
-                                  style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.red),
-                                    shape: MaterialStateProperty.all(
-                                      RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
+
+                            SizedBox(height: 8),
+
+
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                                    child: TextButton(
+                                      style: ButtonStyle(
+                                        backgroundColor: MaterialStateProperty.all(Colors.red),
+                                        shape: MaterialStateProperty.all(
+                                          RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                          ),
+                                        ),
+                                        side: MaterialStateProperty.all(
+                                          BorderSide(
+                                            color: Colors.grey,
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    side: MaterialStateProperty.all(
-                                      BorderSide(
-                                        color: Colors.grey,
-                                      ),
+
+                                      child: Text('Compartilhar',
+                                          style: TextStyle(
+                                            color:Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          )),
+
+                                      onPressed: () {
+                                        debugPrint("Compartilhar");
+                                      },
                                     ),
                                   ),
-                                  child: Text('Compartilhar',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                      )),
-                                  onPressed: () {
-                                    setState(() {
-                                      Share.share(
-                                          'Dados gerados no aplicativo de Cálculo de Valor Total de Empreendimentos.\n'+
-                                          'Nome do Empreendimento: $empreendimento.nome;\n'+
-                                          'Descrição: $empreendimento.descricao;\n'+
-                                          'Endereço: $empreendimento.endereco;\n'+
-                                          'Criado em ${empreendimento.dtHrCriacao};\n'+
-                                          'Valor de CUB aplicado: R\$ $valorCubFormatado;\n'+
-                                          'Área do terreno: ${empreendimento.areaTerreno} m²;\n'+
-                                          'Valor do terreno: R\$ $valorFormatado;\n'+
-                                          'Coeficiente de aproveitamento do terreno: $empreendimento.coeficienteAproveitamento.toString();\n'+
-                                          'Área máxima construível: ${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²;\n'+
-                                          'Valor comercial do terreno: R\$ $valorComercialTerrenoFormatado;\n'+
-                                          'Pavimentos: ${empBusiness.calcularNumeroPavimentos(empreendimento).toString()} pavimentos;\n'+
-                                          'Valores não inclusos no CUB: R\$ $valorExtraCubFormatado;\n'+
-                                          'Valor Total do Empreendimento: R\$ $valorTotalEmpreendimentoFormatado;\n'+
-                                          'Preço Inicial do m²: R\$ $precoInicialM2Formatado;'
-                                      );
-                                    });
-                                  },
                                 ),
-                              ),
+                              ],
                             ),
-                            SizedBox(height: 8),
+
+
+                            SizedBox(height: 4),
+
+
                           ],
                         ),
                       )
