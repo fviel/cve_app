@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 
 //import 'dart:math' as math;
@@ -51,6 +52,12 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   String _formatNumber(String s) => NumberFormat.decimalPattern(_locale).format(double.parse(s));
   //String get _currency => NumberFormat.compactSimpleCurrency(locale: _locale).currencySymbol;
   String get currency => NumberFormat.compactSimpleCurrency(locale: _locale, decimalDigits: 2).currencySymbol;
+
+  @override
+  void initState() {
+    super.initState();
+    initializeDateFormatting("pt_BR", "");
+  }
 
   //Método Build() usando métodos separados, fica mais limpo o código
   @override
@@ -471,7 +478,11 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
     voltarParaAUltimaTela();
 
     //adiciona a data atomática
-    empreendimento.dtHrCriacao = DateFormat.yMMMd().format(DateTime.now());
+    //empreendimento.dtHrCriacao = DateFormat.yMMMd().format(DateTime.now());
+    //empreendimento.dtHrCriacao = DateFormat("MMMM yyyy", "pt_BR").format(DateTime.now());
+    empreendimento.dtHrCriacao = DateFormat("dd/MM/yyyy hh:mm:ss", "pt_BR").format(DateTime.now());
+
+
     int resultado;
     if (empreendimento.id != null) {
       //UPDATE
