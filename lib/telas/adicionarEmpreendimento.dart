@@ -204,14 +204,14 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val.replaceAll('.', '').replaceAll(',', '.'))<=0)) {
-                    return 'Informe um valor válido para o CUB';
+                    return 'Informe um valor válido para o CUB (R\$)';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                     counterText: "",
                     prefixText: 'R\$',
-                    labelText: "Valor do CUB",
+                    labelText: "Valor do CUB (R\$)",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -265,13 +265,13 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
-                    return 'Informe uma taxa de ocupação válida';
+                    return 'Informe uma taxa de ocupação válida (%)';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                     counterText: "",
-                    labelText: "Taxa de ocupação",
+                    labelText: "Taxa de ocupação (%)",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -295,13 +295,13 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 maxLength: 15,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
-                    return 'Informe um coeficiente de aproveitamento válido';
+                    return 'Informe um coeficiente de aproveitamento válido (%)';
                   }
                   return null;
                 },
                 decoration: InputDecoration(
                     counterText: "",
-                    labelText: "Coeficiente de aproveitamento",
+                    labelText: "Coeficiente de aproveitamento (%)",
                     labelStyle: textStyle,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5.0),
@@ -394,17 +394,6 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                       ),
                     ),
                   ),
-                  // Expanded(
-                  //   child: TextButton(
-                  //     child: Text('Excluir'),
-                  //     onPressed: () {
-                  //       setState(() {
-                  //         debugPrint('Usuário clicou em excluir');
-                  //         _excluir();
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
                 ],
               ),
             ),
@@ -480,7 +469,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
     //adiciona a data atomática
     //empreendimento.dtHrCriacao = DateFormat.yMMMd().format(DateTime.now());
     //empreendimento.dtHrCriacao = DateFormat("MMMM yyyy", "pt_BR").format(DateTime.now());
-    empreendimento.dtHrCriacao = DateFormat("dd/MM/yyyy hh:mm:ss", "pt_BR").format(DateTime.now());
+    empreendimento.dtHrCriacao = DateFormat("dd/MM/yyyy HH:mm:ss", "pt_BR").format(DateTime.now());
 
 
     int resultado;
@@ -504,7 +493,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
   void _showAlertDialog(String titulo, String conteudo) {
     AlertDialog alertDialog = AlertDialog(
       title: Text(titulo,
-        style: AppTextStyles.heading,),
+        style: AppTextStyles.headingGrey,),
       content: Text(conteudo,
       style: AppTextStyles.body,
       ),
