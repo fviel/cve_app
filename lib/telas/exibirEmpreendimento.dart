@@ -490,7 +490,8 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                             "Pavimentos: ${empBusiness.calcularNumeroPavimentos(empreendimento).toString()} pavimentos;\n" +
                                             "Valores não inclusos no CUB: R\$ $valorExtraCubFormatado;\n" +
                                             "Valor Total do Empreendimento: R\$ $valorTotalEmpreendimentoFormatado;\n" +
-                                            "Preço Inicial do m²: R\$ $precoInicialM2Formatado;\n");
+                                            "Preço Inicial do m²: R\$ $precoInicialM2Formatado;\n",
+                                            subject: 'Relatório de cálculo de valor de empreendimento ${empreendimento.nome} ');
                                       },
                                     ),
                                   ),
