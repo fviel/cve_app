@@ -43,7 +43,7 @@ class EmpreendimentoBusinessSingleton{
 
   //3
   double calcularNumeroPavimentos(Empreendimento emp){
-    return emp.coeficienteAproveitamento / emp.taxaOcupacao;
+    return (emp.coeficienteAproveitamento / emp.taxaOcupacao)*100;
   }
 
   //4

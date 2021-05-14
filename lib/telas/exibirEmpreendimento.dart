@@ -98,12 +98,16 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                               children: [
                                 Expanded(
                                   flex: 2,
-                                  child: Icon(
-                                    // Icons.architecture,
-                                    Icons.business,
-                                    color: Colors.redAccent,
-                                    size: 30.0,
-                                  ),
+                                  child: CircleAvatar(
+                                    backgroundColor: Colors.blue[300],
+                                    child: Icon(Icons.apartment, color: Colors.blue[900]),
+                                  )
+                                  // child: Icon(
+                                  //   // Icons.architecture,
+                                  //   Icons.business,
+                                  //   color: Colors.redAccent,
+                                  //   size: 30.0,
+                                  // ),
                                 ),
                                 SizedBox(width: 2),
                                 Expanded(
@@ -239,6 +243,31 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                             ),
                             SizedBox(height: 8),
                             Text(
+                              'Taxa de ocupação:',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 100,
+                              softWrap: false,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.grey[800],
+                              ),
+                            ),
+                            SizedBox(height: 4),
+                            Text(
+                              '${empreendimento.taxaOcupacao} %',
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 100,
+                              softWrap: false,
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                fontSize: 14.0,
+                                color: Colors.grey[500],
+                              ),
+                            ),
+
+                            SizedBox(height: 8),
+                            Text(
                               'Coeficiente de aproveitamento do terreno:',
                               overflow: TextOverflow.ellipsis,
                               maxLines: 100,
@@ -251,8 +280,7 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                             ),
                             SizedBox(height: 4),
                             Text(
-                              empreendimento.coeficienteAproveitamento
-                                  .toString(),
+                              '${empreendimento.coeficienteAproveitamento} %',
                               overflow: TextOverflow.ellipsis,
                               maxLines: 100,
                               softWrap: false,
@@ -455,7 +483,8 @@ class _ExibirEmpreendimentoState extends State<ExibirEmpreendimento> {
                                             "Valor de CUB aplicado: R\$ $valorCubFormatado;\n" +
                                             "Área do terreno: ${empreendimento.areaTerreno} m²;\n" +
                                             "Valor do terreno: R\$ $valorFormatado;\n" +
-                                            "Coeficiente de aproveitamento do terreno: ${empreendimento.coeficienteAproveitamento.toString()};\n" +
+                                            "Taxa de ocupação: ${empreendimento.taxaOcupacao.toString()} %;\n" +
+                                            "Coeficiente de aproveitamento do terreno: ${empreendimento.coeficienteAproveitamento.toString()} %;\n" +
                                             "Área máxima construível: ${empBusiness.calcularAreaMaximaContruida(empreendimento).toString()} m²;\n" +
                                             "Valor comercial do terreno: R\$ $valorComercialTerrenoFormatado;\n" +
                                             "Pavimentos: ${empBusiness.calcularNumeroPavimentos(empreendimento).toString()} pavimentos;\n" +

@@ -262,7 +262,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: taxaOcupacaoCtrl,
-                maxLength: 15,
+                maxLength: 5,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe uma taxa de ocupação válida (%)';
@@ -292,7 +292,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                 keyboardType: TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}')),],
                 controller: coeficienteAproveitamentoCtrl,
-                maxLength: 15,
+                maxLength: 5,
                 validator: (val) {
                   if ((val.isEmpty) || (double.parse(val)<=0)) {
                     return 'Informe um coeficiente de aproveitamento válido (%)';
@@ -361,7 +361,7 @@ class _AdicionarEmpreendimentoState extends State<AdicionarEmpreendimento> {
                       padding: const EdgeInsets.symmetric(horizontal: 32),
                       child: TextButton.icon(
                         icon: Icon( Icons.save_outlined,
-                          color: Colors.grey[300],
+                          color: Colors.white,
                           size: 18,),
                           style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(Colors.red),

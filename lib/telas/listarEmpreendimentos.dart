@@ -129,14 +129,14 @@ class _ListarEmpreendimentosState extends State<ListarEmpreendimentos> {
           TextButton.icon(
             icon: Icon(
               Icons.assignment_ind,
-              color: Colors.grey[300],
+              color: Colors.white,
               size: 20.0,
             ),
             label: Text(
               'Sobre',
               style: TextStyle(
                 fontSize: 12.0,
-                color: Colors.grey[300],
+                color: Colors.white,
               ),
             ),
             onPressed: () async {
