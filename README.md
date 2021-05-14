@@ -8,8 +8,10 @@ _Aplicação de cálculo de valor total de empreendimentos baseado no CUB._
 - [X] 'Sobre' do autor do artigo que gerou o cálculo;
 - [X] Detalhamento do cálculo realizado;
 - [ ] Subsitema de gestão de valores de CUB;
-- [ ] Obtenção automática de valor de CUB por meio de webservice;
-- [ ] Plotagem do empreendimento no mapa;
+- [ ] Compartilhar os dados gerados como imagem. Para isto terei que renderizar o widget do exibir em imagem, gravar ela e depois incluir a imagem no share:
+https://medium.com/flutter-community/export-your-widget-to-image-with-flutter-dc7ecfa6bafb
+https://pub.dev/packages/share_plus/example
+
 
 ## Frameworks/tecnologias utilizadas:
 [Flutter](https://flutter.dev)
